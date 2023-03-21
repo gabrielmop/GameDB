@@ -19,7 +19,7 @@ namespace GameDB.Controllers
             Repositorio = _repositorio;
         }
 
-        [HttpPost("CadastrarNovoGenero")]
+        [HttpPost("Cadastra-rNovo-Genero")]
         public IActionResult CadastrarGenero([FromForm] Genero genero)
         {
             try
@@ -33,7 +33,7 @@ namespace GameDB.Controllers
             }
         }
 
-        [HttpGet("ListarGeneros")]
+        [HttpGet("Listar-Generos")]
         public IActionResult ListarGeneros()
         {
             try
@@ -48,7 +48,7 @@ namespace GameDB.Controllers
             }
         }
 
-        [HttpGet("ProcurarGeneroPorId/{id}")]
+        [HttpGet("Procurar-Genero-Por-Id/{id}")]
         public IActionResult BuscarGeneroPorId(int id)
         {
             try
@@ -67,7 +67,7 @@ namespace GameDB.Controllers
             }
         }
 
-        [HttpPut("EditarGenero/{id}")]
+        [HttpPut("Editar-Genero/{id}")]
         public IActionResult AlterarGenero(int id, [FromForm] Genero genero)
         {
             try
@@ -87,7 +87,7 @@ namespace GameDB.Controllers
             }
         }
 
-        [HttpPatch("EditarGeneroParcialmente/{id}")]
+        [HttpPatch("Editar-Genero-Parcialmente/{id}")]
         public IActionResult EditarParcialmente(int id, [FromBody]JsonPatchDocument patch)
         {
             if (patch == null)
@@ -103,7 +103,7 @@ namespace GameDB.Controllers
             return Ok(genero);
         }
 
-        [HttpDelete("ApagarGenero/{id}")]
+        [HttpDelete("Apagar-Genero/{id}")]
         public IActionResult ApagarGenero(int id)
         {
             try

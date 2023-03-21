@@ -14,14 +14,13 @@ namespace GameDB.Controllers
     public class PS3Controller : ControllerBase
     {
        private readonly IPS3Service _service;
-       private readonly IPs3Repository Repositorio;
+      
         public PS3Controller(IPS3Service service, IPs3Repository repositorio)
         {
-            _service = service;
-            Repositorio = repositorio;
+            _service = service;            
         }
 
-        [HttpPost("AdicionarJogoPS3")]
+        [HttpPost("Adicionar-Jogo-PS3")]
         public IActionResult AdicionarJogo([FromForm] Ps3 ps3)
         {
             _service.AdicionarJogo(ps3);
@@ -29,17 +28,17 @@ namespace GameDB.Controllers
 
         }
 
-        [HttpGet("Listar_Jogos_PS3")]
+        [HttpGet("Listar-Jogos-PS3")]
         public IActionResult ListarJogos()
         {
             var result = _service.ListarJogo();
             return Ok(result);
         }
 
-        [HttpPut("Editar_Jogo")]
+        [HttpPut("Editar-Jogo")]
         public IActionResult EditarJogo(int id, [FromForm] Ps3 ps3)
         {
-            var result = Repositorio.ProcurarJogo(id);
+            var result = _service.ProcurarJogo(id);
             if (result == null)
             {
                 return NotFound("Jogo não encontrado");
@@ -48,26 +47,27 @@ namespace GameDB.Controllers
             return Ok(ps3);
         }
 
-        [HttpDelete("Apagar_Jogo/{id}")]
+        [HttpDelete("Apagar-Jogo/{id}")]
         public IActionResult ApagarJogo(int id)
         {
-            var busca = Repositorio.ProcurarJogo(id);
+            var busca = 
+                _service.ProcurarJogo(id);
             if (busca == null)
             {
                 return NotFound("Jogo não encontrado");
             }
-            Repositorio.ApagarJogo(busca);
+            _service.ApagarJogo(busca);
             return Ok(busca);
         }
 
-        [HttpPatch(("Editar_Jogo_Parcialmente/{id}"))]
+        [HttpPatch(("Editar-Jogo-Parcialmente/{id}"))]
         public IActionResult EditarParcialmente(int id, [FromBody] JsonPatchDocument patch)
         {
             if (patch == null)
             {
                 return BadRequest("Nenhuma edição encontrada");
             }
-            var busca = Repositorio.ProcurarJogo(id);
+            var busca = _service.ProcurarJogo(id);
             if (busca == null)
             {
                 return NotFound("Jogo não encontrado");

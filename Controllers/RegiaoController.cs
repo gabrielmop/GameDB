@@ -16,14 +16,14 @@ namespace GameDB.Controllers
             Repositorio = _repositorio;
         }
 
-        [HttpPost("CadastrarRegiao")]
+        [HttpPost("Cadastrar-Regiao")]
         public IActionResult CadastrarRegiao([FromForm] Regiao regiao)
         {
             var result = Repositorio.CadastrarRegiao(regiao);
             return Ok(result);
         }
 
-        [HttpGet("ListarRegioes")]
+        [HttpGet("Listar-Regioes")]
         public IActionResult ListarRegioes()
         {
             try
@@ -38,7 +38,7 @@ namespace GameDB.Controllers
             }
         }
 
-        [HttpPut("EditarRegiao/{id}")]
+        [HttpPut("Editar-Regiao/{id}")]
         public IActionResult EditarRegiao(int id, [FromForm] Regiao regiao)
         {
             var result = Repositorio.ProcurarRegiao(id);
@@ -51,7 +51,7 @@ namespace GameDB.Controllers
             return Ok(regiao);
         }
 
-        [HttpDelete("ApagarRegiao/{id}")]
+        [HttpDelete("Apagar-Regiao/{id}")]
         public IActionResult ApagarRegiao(int id)
         {
             var busca = Repositorio.ProcurarRegiao(id);

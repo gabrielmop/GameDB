@@ -34,10 +34,5 @@ namespace GameDB.Models
         public bool? Instalacao { get; set; }
     }
 
-    public class PS3filtro
-    {
-        public string RegiaoId { get; set; }
-        public string PlataformaId { get; set; }
-        public string GeneroId { get; set; }
-    }
+
 }

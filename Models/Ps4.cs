@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace GameDB.Models
 {
@@ -23,6 +24,7 @@ namespace GameDB.Models
 
     public partial class Ps4Lista
     {
+        [Key]
         public int GameId { get; set; }
         public string Nome { get; set; }
         public string Serial { get; set; }
@@ -30,7 +32,7 @@ namespace GameDB.Models
         public int PlataformaId { get; set; }
         public int GeneroId { get; set; }
         public DateTime Lancamento { get; set; }
-        public double Tamanho { get; set; }
+        public string Tamanho { get; set; }
         public string Preco { get; set; }
         public DateTime Aquisicao { get; set; }
         public string LocalAdq { get; set; }

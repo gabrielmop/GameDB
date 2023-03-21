@@ -17,7 +17,7 @@ namespace GameDB.Controllers
         }
 
 
-        [HttpPost("RegistrarNovaPlataforma")]
+        [HttpPost("Registrar-Nova-Plataforma")]
         public IActionResult RegistrarPlataforma([FromForm] Plataforma plataforma)
         {
             try
@@ -31,7 +31,7 @@ namespace GameDB.Controllers
             }
         }
 
-        [HttpGet("ListarPlataforma")]
+        [HttpGet("Listar-Plataforma")]
         public IActionResult ListarPlataforma()
         {
             try
@@ -45,7 +45,7 @@ namespace GameDB.Controllers
             }
         }
 
-        [HttpGet("BuscarPlataformaPorId/{id}")]
+        [HttpGet("Buscar-Plataforma-Por-Id/{id}")]
         public IActionResult BuscarPorId(int id)
         {
             try
@@ -62,7 +62,7 @@ namespace GameDB.Controllers
                 return BadRequest(ex.Message);
             }
         }
-        [HttpPut("EditarPlataforma/{id}")]
+        [HttpPut("Editar-Plataforma/{id}")]
         public IActionResult EditarPlataforma(int id,[FromForm]Plataforma plataforma)
         {
             try
@@ -81,7 +81,7 @@ namespace GameDB.Controllers
             }
         }
 
-        [HttpDelete("Apagar Plataforma/{id}")]
+        [HttpDelete("Apagar-Plataforma/{id}")]
         public IActionResult ApagarPlataforma(int id)
         {
             var resultado = Repositorio.ProcurarPlataforma(id);

@@ -22,6 +22,11 @@ namespace GameDB.Services
             return ps3;
         }
 
+        public void ApagarJogo(Ps3 ps3)
+        {
+            Repositorio.ApagarJogo(ps3);
+        }
+
         public void EditarJogo(Ps3 ps3)
         {
             Repositorio.EditarJogo(ps3);
@@ -38,23 +43,27 @@ namespace GameDB.Services
             var result = Repositorio.ListarJogo();
             foreach (var item in result)
             {
-
                 if (item.Preco == "R$ 0,00")
-
                 {
-                  item.Preco = "Presente";
-                }
-
-                if (item.Observacoes.Contains("Bundle"))
-                {
-                    item.Preco = "Bundle Com A Guitarra";
-                }
+                    if (item.Observacoes.Contains("Bundle"))
+                    {
+                        item.Preco = "Bundle Com A Guitarra";
+                    }
+                    else
+                   item.Preco = "Presente";
+                }               
             }
 
             return result;
 
 
 
+        }
+
+        public Ps3 ProcurarJogo(int id)
+        {
+            var busca =Repositorio.ProcurarJogo(id);
+            return busca;
         }
     }
             
