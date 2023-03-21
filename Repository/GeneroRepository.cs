@@ -1,36 +1,62 @@
-﻿using GameDB.Interface;
+﻿using GameDB.DataContext;
+using GameDB.Interface;
 using GameDB.Models;
+using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using System.IO;
+using System.Text.RegularExpressions;
 
 namespace GameDB.Repository
 {
-    public class GeneroRepository : IGenero
+    public class GeneroRepository : IGeneroRepository
     {
-        readonly string connectionString = "data source=MOOP_PC;Integrated Security =true;Initial Catalog=GameDB";
 
-        public string ApagarGenero(int id)
+        //Injetção de dependencia
+        GameDBContext DBC;
+
+        public GeneroRepository(GameDBContext _DBC)
         {
-            throw new NotImplementedException();
+            DBC = _DBC;
+        }
+        
+        public void ApagarGenero(Genero genero)
+        {
+            DBC.Generos.Remove(genero);
+            DBC.SaveChanges();
         }
 
-        public IActionResult EditarGenero(int id, Genero Genero)
+        public void EditarGenero(Genero Genero)
         {
-            throw new NotImplementedException();
+            DBC.Entry(Genero).State = EntityState.Modified;
+            DBC.SaveChanges();
+        }
+
+        public void EditarGeneroParcialmente(JsonPatchDocument patch, Genero genero)
+        {
+            patch.ApplyTo(genero);
+            DBC.Entry(genero).State = EntityState.Modified;
+            DBC.SaveChanges();
+
         }
 
         public List<Genero> ListarGeneros()
         {
-            throw new NotImplementedException();
+            return DBC.Generos.ToList();
         }
 
-        public string ProcurarGenero(int id)
+        public Genero ProcurarGenero(int id)
         {
-            throw new NotImplementedException();
+            //Expressão lambda:
+            // return DBC.Genero.Where(s => s.id == id).FirstOrDefault();
+            return DBC.Generos.Find(id);
         }
 
-        public IActionResult RegistrarGenero(Genero Genero)
+        public Genero RegistrarGenero(Genero genero)
         {
-            throw new NotImplementedException();
+            DBC.Add(genero);
+            DBC.SaveChanges();
+            return genero;
         }
     }
 }
