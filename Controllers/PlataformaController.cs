@@ -1,5 +1,5 @@
-﻿using GameDB.Interface;
-using GameDB.Models;
+﻿using GameDB.Models;
+using GameDB.Repository.Interface;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -10,10 +10,13 @@ namespace GameDB.Controllers
     public class PlataformaController : ControllerBase
     {
         private readonly IPlataformaRepository Repositorio;
+        private readonly IlogRepository LogRepo;
 
-        public PlataformaController(IPlataformaRepository _repositorio)
+        public PlataformaController(IPlataformaRepository _repositorio, IlogRepository _log)
         {
             Repositorio = _repositorio;
+            LogRepo = _log;
+
         }
 
 
@@ -23,7 +26,8 @@ namespace GameDB.Controllers
             try
             {
                 var result = Repositorio.RegistrarPlataforma(plataforma);
-                return Ok(result);
+               return Ok(result);
+                
             }
             catch (Exception ex)
             {

@@ -1,6 +1,6 @@
 ﻿using GameDB.DataContext;
-using GameDB.Interface;
 using GameDB.Models;
+using GameDB.Repository.Interface;
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;

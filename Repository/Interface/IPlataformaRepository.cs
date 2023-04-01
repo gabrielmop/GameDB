@@ -1,6 +1,6 @@
 ﻿using GameDB.Models;
 
-namespace GameDB.Interface
+namespace GameDB.Repository.Interface
 {
     public interface IPlataformaRepository
     {

@@ -1,7 +1,7 @@
 ﻿using GameDB.Models;
 using Microsoft.AspNetCore.JsonPatch;
 
-namespace GameDB.Interface
+namespace GameDB.Repository.Interface
 {
     public interface IPs3Repository
     {

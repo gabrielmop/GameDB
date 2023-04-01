@@ -24,6 +24,7 @@ namespace GameDB.DataContext
         public virtual DbSet<Ps4> Ps4s { get; set; } = null!;
         public virtual DbSet<Ps4Lista> Ps4l { get; set; } = null!;
         public virtual DbSet<Regiao> Regioes { get; set; } = null!;
+        public virtual DbSet<Logs> Logs { get; set; } = null!;
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

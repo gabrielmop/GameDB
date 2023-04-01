@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 
-namespace GameDB.Interface
+namespace GameDB.Repository.Interface
 {
     public interface IGeneroRepository
     {

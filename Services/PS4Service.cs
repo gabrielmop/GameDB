@@ -1,5 +1,6 @@
-﻿using GameDB.Interface;
-using GameDB.Models;
+﻿using GameDB.Models;
+using GameDB.Repository.Interface;
+using GameDB.Services.Interfaces;
 using Microsoft.AspNetCore.JsonPatch;
 
 namespace GameDB.Services

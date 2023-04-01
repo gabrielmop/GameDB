@@ -1,9 +1,11 @@
-﻿using GameDB.Interface;
-using GameDB.Models;
+﻿using GameDB.Models;
+using GameDB.Repository.Interface;
+using GameDB.Services.Interfaces;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.VisualBasic;
+using System.Data.SqlTypes;
 using System.Globalization;
 
 namespace GameDB.Controllers
@@ -13,22 +15,26 @@ namespace GameDB.Controllers
     public class GeneroController : ControllerBase
     {
         private readonly IGeneroRepository Repositorio;
+        private readonly IlogService LogService;
 
-        public GeneroController(IGeneroRepository _repositorio)
+        public GeneroController(IGeneroRepository _repositorio, IlogService _Log)
         {
             Repositorio = _repositorio;
+            LogService = _Log;
         }
 
-        [HttpPost("Cadastra-rNovo-Genero")]
+        [HttpPost("Cadastrar-Novo-Genero")]
         public IActionResult CadastrarGenero([FromForm] Genero genero)
         {
             try
             {
                 var result = Repositorio.RegistrarGenero(genero);
+                LogService.RegistrarLog(DateTime.Now, 2, $"O genero {genero.GeneroNome} Foi registrado no Banco", "");
                 return Ok(result);
             }
             catch (Exception ex)
             {
+                LogService.RegistrarLog(DateTime.Now, 1, "Um Erro foi encontrado", ex.Message);
                 return BadRequest(ex.Message);
             }
         }
@@ -78,10 +84,12 @@ namespace GameDB.Controllers
                     return NotFound("Genero não encontrado");
                 }
                 Repositorio.EditarGenero(genero);
+                LogService.RegistrarLog(DateTime.Now, 2, $"O genero {genero.GeneroNome} Foi Alterado no Banco", "");
                 return Ok(genero);
             }
             catch (System.Exception ex)
             {
+                LogService.RegistrarLog(DateTime.Now, 1, "Um Erro foi encontrado", ex.Message);
                 return BadRequest($"{ex.Message}");
 
             }
@@ -90,17 +98,26 @@ namespace GameDB.Controllers
         [HttpPatch("Editar-Genero-Parcialmente/{id}")]
         public IActionResult EditarParcialmente(int id, [FromBody]JsonPatchDocument patch)
         {
-            if (patch == null)
+            try
             {
-                return BadRequest();
+                if (patch == null)
+                {
+                    return BadRequest();
+                }
+                var genero = Repositorio.ProcurarGenero(id);
+                if (genero == null)
+                {
+                    return NotFound();
+                }
+                Repositorio.EditarGeneroParcialmente(patch, genero);
+                LogService.RegistrarLog(DateTime.Now, 2, $"O genero {genero.GeneroNome} Foi Alerado no Banco", "");
+                return Ok(genero);
             }
-            var genero = Repositorio.ProcurarGenero(id);
-            if (genero == null)
+            catch (System.Exception ex)
             {
-                return NotFound();
+                LogService.RegistrarLog(DateTime.Now, 1, "Um Erro foi encontrado", ex.Message);
+                return BadRequest("Um erro foi encontrado");
             }
-            Repositorio.EditarGeneroParcialmente(patch, genero);
-            return Ok(genero);
         }
 
         [HttpDelete("Apagar-Genero/{id}")]
@@ -115,11 +132,13 @@ namespace GameDB.Controllers
                 }
 
                 Repositorio.ApagarGenero(busca);
+                LogService.RegistrarLog(DateTime.Now, 2, $"O genero {busca.GeneroNome} Foi apagado do Banco", "");
                 return NoContent();
 
             }
             catch (System.Exception ex)
             {
+                LogService.RegistrarLog(DateTime.Now, 1, "Um Erro foi encontrado", ex.Message);
                 return BadRequest($"{ex.Message}");
 
             }

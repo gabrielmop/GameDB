@@ -1,7 +1,8 @@
 using GameDB.DataContext;
-using GameDB.Interface;
 using GameDB.Repository;
+using GameDB.Repository.Interface;
 using GameDB.Services;
+using GameDB.Services.Interfaces;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -19,6 +20,8 @@ builder.Services.AddTransient<IPs3Repository, Ps3Repository>();
 builder.Services.AddTransient<IPS3Service, Ps3Serivce>();
 builder.Services.AddTransient<IPS4Repository, PS4Repository>();
 builder.Services.AddTransient<IPS4Service, PS4Service>();
+builder.Services.AddTransient<IlogRepository, LogRepository>();
+builder.Services.AddTransient<IlogService, LogServices>();
 
 var app = builder.Build();
 

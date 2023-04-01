@@ -1,5 +1,5 @@
-﻿using GameDB.Interface;
-using GameDB.Models;
+﻿using GameDB.Models;
+using GameDB.Repository.Interface;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
