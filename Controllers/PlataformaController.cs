@@ -1,5 +1,6 @@
 ﻿using GameDB.Models;
 using GameDB.Repository.Interface;
+using GameDB.Services.Interfaces;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -10,12 +11,12 @@ namespace GameDB.Controllers
     public class PlataformaController : ControllerBase
     {
         private readonly IPlataformaRepository Repositorio;
-        private readonly IlogRepository LogRepo;
+        private readonly IlogService LogService;
 
-        public PlataformaController(IPlataformaRepository _repositorio, IlogRepository _log)
+        public PlataformaController(IPlataformaRepository _repositorio, IlogService _log)
         {
             Repositorio = _repositorio;
-            LogRepo = _log;
+            LogService = _log;
 
         }
 
@@ -26,11 +27,13 @@ namespace GameDB.Controllers
             try
             {
                 var result = Repositorio.RegistrarPlataforma(plataforma);
-               return Ok(result);
+                LogService.RegistrarLog(DateTime.Now, 2, $"a Plataforma {plataforma.Console} da {plataforma.Marca}  Foi registrado no Banco", "");
+                return Ok(result);
                 
             }
             catch (Exception ex)
             {
+                LogService.RegistrarLog(DateTime.Now, 1, "Um Erro foi encontrado", ex.Message);
                 return BadRequest(ex.Message);
             }
         }
@@ -77,6 +80,7 @@ namespace GameDB.Controllers
                     return NotFound();
                 }
                 Repositorio.EditarPlataforma(plataforma);
+                LogService.RegistrarLog(DateTime.Now, 2, $"O Console {plataforma.Console} Foi alterado no Banco", "");
                 return Ok(plataforma);
             }
             catch (Exception ex)
@@ -94,6 +98,7 @@ namespace GameDB.Controllers
                 return NotFound();
             }
             Repositorio.ApagarPlataforma(resultado);
+            LogService.RegistrarLog(DateTime.Now, 2, $"O Console {resultado.Console} Foi apagado do Banco", "");
             return Ok(resultado);
         }
     }

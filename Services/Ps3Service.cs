@@ -63,7 +63,7 @@ namespace GameDB.Services
 
         public Ps3 ProcurarJogo(int id)
         {
-            var busca =Repositorio.ProcurarJogo(id);
+            var busca = Repositorio.ProcurarJogo(id);
             return busca;
         }
     }
