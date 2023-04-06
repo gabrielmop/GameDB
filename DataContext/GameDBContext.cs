@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 using GameDB.Models;
+using static GameDB.Models.N3DS;
 
 namespace GameDB.DataContext
 {
@@ -25,6 +26,8 @@ namespace GameDB.DataContext
         public virtual DbSet<Ps4Lista> Ps4l { get; set; } = null!;
         public virtual DbSet<Regiao> Regioes { get; set; } = null!;
         public virtual DbSet<Logs> Logs { get; set; } = null!;
+        public virtual DbSet<N3DS> N3Ds { get; set; } = null!;
+        public virtual DbSet<N3dsLista> N3DSl { get; set; } = null!;
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
