@@ -38,27 +38,23 @@ namespace GameDB.Services
             Repositorio.EditarParcialmente(patch, ps3);
         }
 
-        public List<PS3Lista> ListarJogo()
+        public List<Ps3Lista> ListarJogo()
         {
-
             var result = Repositorio.ListarJogo();
             foreach (var item in result)
             {
                 if (item.Preco == "R$ 0,00")
                 {
-                    if (item.Observacoes.Contains("Bundle"))
+                    if (item.Observacoes.Contains("Guitarra"))
                     {
-                        item.Preco = "Bundle Com A Guitarra";
+                        item.Preco = "Bundle com a Guitarra";
                     }
                     else
-                   item.Preco = "Presente";
-                }               
+
+                        item.Preco = "Presente";
+                }
             }
-
             return result;
-
-
-
         }
 
         public Ps3 ProcurarJogo(int id)

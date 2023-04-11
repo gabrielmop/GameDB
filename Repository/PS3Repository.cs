@@ -3,6 +3,8 @@ using GameDB.Models;
 using GameDB.Repository.Interface;
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.EntityFrameworkCore;
+using System;
+
 
 namespace GameDB.Repository
 {
@@ -41,18 +43,15 @@ namespace GameDB.Repository
             DBC.SaveChanges();
         }
 
-        public List<PS3Lista> ListarJogo()
+        public List<Ps3Lista> ListarJogo()
         {
-            {
-                
-               var Lista = DBC.Ps3l.FromSqlRaw("execute dbo.Listar_Jogos_PS3");
-                return Lista.ToList();
+            var Lista = DBC.Ps3l.FromSqlRaw("execute dbo.Listar_Jogos_PS3");
+            return Lista.ToList();
 
-            }
         }
 
 
-            public Ps3 ProcurarJogo(int id)
+        public Ps3 ProcurarJogo(int id)
         {
             return DBC.Ps3s.Find(id);
            

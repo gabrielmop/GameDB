@@ -21,13 +21,13 @@ namespace GameDB.DataContext
         public virtual DbSet<Genero> Generos { get; set; } = null!;
         public virtual DbSet<Plataforma> Plataformas { get; set; } = null!;
         public virtual DbSet<Ps3> Ps3s { get; set; } = null!;
-        public virtual DbSet<PS3Lista> Ps3l { get; set; } = null!;
+        public virtual DbSet<Ps3Lista> Ps3l { get; set; } = null!;
         public virtual DbSet<Ps4> Ps4s { get; set; } = null!;
         public virtual DbSet<Ps4Lista> Ps4l { get; set; } = null!;
         public virtual DbSet<Regiao> Regioes { get; set; } = null!;
         public virtual DbSet<Logs> Logs { get; set; } = null!;
         public virtual DbSet<N3DS> N3Ds { get; set; } = null!;
-        public virtual DbSet<N3dsLista> N3DSl { get; set; } = null!;
+        public virtual DbSet<N3DSLista> N3DSl { get; set; } = null!;
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

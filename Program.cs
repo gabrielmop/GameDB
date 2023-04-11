@@ -22,6 +22,8 @@ builder.Services.AddTransient<IPS4Repository, PS4Repository>();
 builder.Services.AddTransient<IPS4Service, PS4Service>();
 builder.Services.AddTransient<IlogRepository, LogRepository>();
 builder.Services.AddTransient<IlogService, LogServices>();
+builder.Services.AddTransient<IN3DSRepository, N3DSRepository>();
+builder.Services.AddTransient<IN3DSService, N3DSService>();
 
 var app = builder.Build();
 
