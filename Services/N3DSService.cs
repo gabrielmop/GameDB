@@ -41,6 +41,8 @@ namespace GameDB.Services
 
             foreach (var item in Result)
             {
+                item.Tamanho = $"{item.Tamanho}MB";
+
                 if (item.Preco == "R$ 0,00")
                 {
                     if (item.Observacoes.Contains("Videogame"))
@@ -51,16 +53,7 @@ namespace GameDB.Services
                         item.Preco = "Presente";
                     }
                    
-                }
-                if (Convert.ToDouble(item.Tamanho) < 7.9999)
-                {
-                    item.Tamanho = $"{item.Tamanho}GB";
-                    return Result;
-                }
-                else
-                {
-                    item.Tamanho = $"{item.Tamanho}MB";
-                }   
+                }          
             }
             return Result;
         }
