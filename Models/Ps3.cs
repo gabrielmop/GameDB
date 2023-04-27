@@ -16,6 +16,7 @@ namespace GameDB.Models
         public string? LocalAdq { get; set; }
         public string? Observacoes { get; set; }
         public bool? Instalacao { get; set; }
+        public string? Estado { get; set; }
     }
 
     public class Ps3Lista
@@ -24,15 +25,16 @@ namespace GameDB.Models
         public int GameId { get; set; }
         public string? Nome { get; set; }
         public string? Serial { get; set; }
-        public int RegiaoId { get; set; }
-        public int PlataformaId { get; set; } = 1;
-        public int GeneroId { get; set; }
-        public string Lancamento { get; set; }
+        public string? Regiao { get; set; }
+        public string? Console { get; set; }
+        public string? Genero { get; set; }
+        public string? Lancamento { get; set; }
         public string? Preco { get; set; }
         public string? Aquisicao { get; set; }
         public string? LocalAdq { get; set; }
         public string? Observacoes { get; set; }
         public bool? Instalacao { get; set; }
+        public string? Estado { get; set; }
     }
 
 
