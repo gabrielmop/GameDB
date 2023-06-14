@@ -29,7 +29,7 @@ namespace GameDB.Controllers
             try
             {
                 var result = Repositorio.RegistrarGenero(genero);
-                LogService.RegistrarLog(DateTime.Now, 2, $"O genero {genero.GeneroNome} Foi registrado no Banco", "");
+                LogService.RegistrarLog(DateTime.Now, 2, $"O genero {genero.GeneroNome} Foi registrado no Banco", "Nenhum erro encontrado");
                 return Ok(result);
             }
             catch (Exception ex)
@@ -84,7 +84,7 @@ namespace GameDB.Controllers
                     return NotFound("Genero não encontrado");
                 }
                 Repositorio.EditarGenero(genero);
-                LogService.RegistrarLog(DateTime.Now, 2, $"O genero {genero.GeneroNome} Foi Alterado no Banco", "");
+                LogService.RegistrarLog(DateTime.Now, 2, $"O genero {genero.GeneroNome} Foi Alterado no Banco", "Nenhum erro encontrado");
                 return Ok(genero);
             }
             catch (System.Exception ex)
@@ -110,7 +110,7 @@ namespace GameDB.Controllers
                     return NotFound();
                 }
                 Repositorio.EditarGeneroParcialmente(patch, genero);
-                LogService.RegistrarLog(DateTime.Now, 2, $"O genero {genero.GeneroNome} Foi Alerado no Banco", "");
+                LogService.RegistrarLog(DateTime.Now, 2, $"O genero {genero.GeneroNome} Foi Alerado no Banco", "Nenhum erro encontrado");
                 return Ok(genero);
             }
             catch (System.Exception ex)
@@ -132,7 +132,7 @@ namespace GameDB.Controllers
                 }
 
                 Repositorio.ApagarGenero(busca);
-                LogService.RegistrarLog(DateTime.Now, 2, $"O genero {busca.GeneroNome} Foi apagado do Banco", "");
+                LogService.RegistrarLog(DateTime.Now, 2, $"O genero {busca.GeneroNome} Foi apagado do Banco", "Nenhum erro encontrado");
                 return NoContent();
 
             }
@@ -141,10 +141,7 @@ namespace GameDB.Controllers
                 LogService.RegistrarLog(DateTime.Now, 1, "Um Erro foi encontrado", ex.Message);
                 return BadRequest($"{ex.Message}");
 
-            }
-
-
-            
+            }            
         }
     }
 }

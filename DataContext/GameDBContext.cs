@@ -28,6 +28,7 @@ namespace GameDB.DataContext
         public virtual DbSet<Logs> Logs { get; set; } = null!;
         public virtual DbSet<N3DS> N3Ds { get; set; } = null!;
         public virtual DbSet<N3DSLista> N3DSl { get; set; } = null!;
+        public virtual DbSet<Estado> Estado { get; set; } = null!;
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

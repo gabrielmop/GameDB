@@ -50,8 +50,6 @@ namespace GameDB.Services
 
                     item.Preco = "Presente";
                 }
-
-               item.Tamanho = $"{item.Tamanho}GB";
             }
 
             return result;

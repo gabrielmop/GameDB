@@ -24,6 +24,7 @@ builder.Services.AddTransient<IlogRepository, LogRepository>();
 builder.Services.AddTransient<IlogService, LogServices>();
 builder.Services.AddTransient<IN3DSRepository, N3DSRepository>();
 builder.Services.AddTransient<IN3DSService, N3DSService>();
+builder.Services.AddTransient<IEstadoRepository, EstadoRepository>();
 
 var app = builder.Build();
 

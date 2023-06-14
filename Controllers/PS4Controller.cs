@@ -22,7 +22,7 @@ namespace GameDB.Controllers
             try
             {
                 _service.AdicionarJogo(ps4);
-                LogService.RegistrarLog(DateTime.Now, 2, $"O Jogo de PS4 {ps4.Nome} foi adicionado ao banco, custo de R${ps4.Preco}", "");
+                LogService.RegistrarLog(DateTime.Now, 2, $"O Jogo de PS4 {ps4.Nome} foi adicionado ao banco, custo de R${ps4.Preco}", "Nenhum erro encontrado");
                 return Ok(ps4);
             }
             catch (Exception ex)
@@ -50,7 +50,7 @@ namespace GameDB.Controllers
                     return BadRequest("Jogo não encontrado");
                 }
                 _service.EditarJogo(ps4);
-                LogService.RegistrarLog(DateTime.Now, 2, $"O Jogo de ID {ps4.GameId} foi editado para {ps4.Nome}", "");
+                LogService.RegistrarLog(DateTime.Now, 2, $"O Jogo de PS4 de ID {ps4.GameId} foi editado para {ps4.Nome}", "Nenhum erro encontrado");
                 return Ok(ps4);
             }
             catch (Exception ex)
@@ -66,7 +66,7 @@ namespace GameDB.Controllers
             try
             {
                 _service.ApagarJogo(ps4);
-                LogService.RegistrarLog(DateTime.Now, 2, $"O Jogo {ps4.Nome} foi apagado do banco","");
+                LogService.RegistrarLog(DateTime.Now, 2, $"O Jogo de PS4 {ps4.Nome} foi apagado do banco","Nenhum erro encontrado");
                 return Ok(ps4);
             }
             catch (Exception ex)
@@ -93,7 +93,7 @@ namespace GameDB.Controllers
                 }
 
                 _service.EditarParcialmente(patch, busca);
-                LogService.RegistrarLog(DateTime.Now, 2, $"O Jogo {busca.Nome} foi editado no banco", "");
+                LogService.RegistrarLog(DateTime.Now, 2, $"O Jogo de PS4 {busca.Nome} foi editado no banco", "Nenhum erro encontrado");
                 return Ok(busca);
             }
             catch (Exception ex)

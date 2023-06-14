@@ -16,7 +16,7 @@ namespace GameDB.Models
         public string? LocalAdq { get; set; }
         public string? Observacoes { get; set; }
         public bool? Instalacao { get; set; }
-        public string? Estado { get; set; }
+        public int EstadoID { get; set; }
     }
 
     public class Ps3Lista
@@ -33,7 +33,7 @@ namespace GameDB.Models
         public string? Aquisicao { get; set; }
         public string? LocalAdq { get; set; }
         public string? Observacoes { get; set; }
-        public bool? Instalacao { get; set; }
+        public string? Instalacao { get; set; }
         public string? Estado { get; set; }
     }
 

@@ -40,8 +40,7 @@ namespace GameDB.Services
             var Result = Repositorio.ListarJogo();
 
             foreach (var item in Result)
-            {
-                item.Tamanho = $"{item.Tamanho}MB";
+            {              
 
                 if (item.Preco == "R$ 0,00")
                 {

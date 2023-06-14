@@ -18,7 +18,7 @@ namespace GameDB.Models
         public string? LocalAdq { get; set; }
         public string? Observacoes { get; set; }
         public bool? Suporte3D { get; set; }
-        public string? Estado { get; set; }
+        public int? EstadoID { get; set; }
     }
     public class N3DSLista
     {
@@ -35,7 +35,7 @@ namespace GameDB.Models
         public string? Aquisicao { get; set; }
         public string? LocalAdq { get; set; }
         public string? Observacoes { get; set; }
-        public bool? Suporte3D { get; set; }
+        public string? Suporte3D { get; set; }
         public string? Estado { get; set; }
     }
 }

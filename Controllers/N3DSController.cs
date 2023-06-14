@@ -26,7 +26,7 @@ namespace GameDB.Controllers
             try
             {
                 _service.AdicionarJogo(n3ds);
-                LogService.RegistrarLog(DateTime.Now, 2, $"O Jogo de N3DS {n3ds.Nome} foi adicionado ao banco, custo de R${n3ds.Preco}", "");
+                LogService.RegistrarLog(DateTime.Now, 2, $"O Jogo de 3DS {n3ds.Nome} foi adicionado ao banco, custo de R${n3ds.Preco}", "");
                 return Ok(n3ds);
             }
             catch (Exception ex)
@@ -83,7 +83,7 @@ namespace GameDB.Controllers
                     return BadRequest("Jogo não encontrado ou já apagado");
                 }
                 _service.ApagarJogo(busca);
-                LogService.RegistrarLog(DateTime.Now, 2, $"O jogo {busca.Nome} de ID {busca.GameId} foi apagado do banco", "Nenhum erro foi encontrado");
+                LogService.RegistrarLog(DateTime.Now, 2, $"O jogo De 3DS {busca.Nome} de ID {busca.GameId} foi apagado do banco", "Nenhum erro foi encontrado");
                 return Ok(busca);
             }
             catch (Exception ex)
@@ -114,7 +114,7 @@ namespace GameDB.Controllers
                  "from": "não precisa se for Replace",
                  "value": "O novo valor que precisa ser"*/
                 _service.EditarParcialmente(patch, busca);
-                LogService.RegistrarLog(DateTime.Now, 2, $"O jogo {busca.Nome} foi alterado no banco", "Nenhum erro encontrado");
+                LogService.RegistrarLog(DateTime.Now, 2, $"O jogo de 3DS {busca.Nome} foi alterado no banco", "Nenhum erro encontrado");
                 return Ok(busca);
             }
             catch (Exception ex)

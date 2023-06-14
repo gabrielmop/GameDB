@@ -29,7 +29,7 @@ namespace GameDB.Controllers
             try
             {
                 _service.AdicionarJogo(ps3);
-                LogService.RegistrarLog(DateTime.Now, 2, $"O Jogo de Ps3 {ps3.Nome} foi adicionado ao banco, custo de R${ps3.Preco}", "");
+                LogService.RegistrarLog(DateTime.Now, 2, $"O Jogo de PS3 {ps3.Nome} foi adicionado ao banco, custo de R${ps3.Preco}", "Nenhum erro encontrado");
                 return Ok(ps3);
             }
             catch (Exception ex)
@@ -57,8 +57,8 @@ namespace GameDB.Controllers
                 {
                     return NotFound("Jogo não encontrado");
                 }
-                _service.EditarJogo(result);
-                LogService.RegistrarLog(DateTime.Now, 2, $"O Jogo de ID {result.GameId} foi editado para {result.Nome}", "");
+                _service.EditarJogo(ps3);
+                LogService.RegistrarLog(DateTime.Now, 2, $"O Jogo de PS3 de ID {result.GameId} foi editado para {result.Nome}", "Nenhum erro encontrado");
                 return Ok(result);
             }
             catch (Exception ex)
@@ -73,14 +73,13 @@ namespace GameDB.Controllers
         {
             try
             {
-                var busca =
-               _service.ProcurarJogo(id);
+                var busca = _service.ProcurarJogo(id);
                 if (busca == null)
                 {
                     return NotFound("Jogo não encontrado");
                 }
                 _service.ApagarJogo(busca);
-                LogService.RegistrarLog(DateTime.Now, 2, $"O Jogo {busca.Nome} foi Removido do banco", "");
+                LogService.RegistrarLog(DateTime.Now, 2, $"O Jogo de PS3 {busca.Nome} foi Removido do banco", "Nenhum erro encontrado");
                 return Ok(busca);
             }
             catch (Exception ex)
@@ -110,7 +109,7 @@ namespace GameDB.Controllers
                  "from": "não precisa se for Replace",
                  "value": "O novo valor que precisa ser"*/
                 _service.EditarParcialmente(patch, busca);
-                LogService.RegistrarLog(DateTime.Now, 2, $"O Jogo {busca.Nome} foi editado no banco", "");
+                LogService.RegistrarLog(DateTime.Now, 2, $"O Jogo de PS3 {busca.Nome} foi editado no banco", "Nenhum erro encontrado");
                 return Ok(busca);
             }
             catch (Exception ex)

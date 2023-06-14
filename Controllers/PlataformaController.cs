@@ -27,7 +27,7 @@ namespace GameDB.Controllers
             try
             {
                 var result = Repositorio.RegistrarPlataforma(plataforma);
-                LogService.RegistrarLog(DateTime.Now, 2, $"a Plataforma {plataforma.Console} da {plataforma.Marca}  Foi registrado no Banco", "");
+                LogService.RegistrarLog(DateTime.Now, 2, $"a Plataforma {plataforma.Console} da {plataforma.Marca}  Foi registrado no Banco", "Nenhum erro encontrado");
                 return Ok(result);
                 
             }
@@ -80,7 +80,7 @@ namespace GameDB.Controllers
                     return NotFound();
                 }
                 Repositorio.EditarPlataforma(plataforma);
-                LogService.RegistrarLog(DateTime.Now, 2, $"O Console {plataforma.Console} Foi alterado no Banco", "");
+                LogService.RegistrarLog(DateTime.Now, 2, $"O Console {plataforma.Console} Foi alterado no Banco", "Nenhum erro encontrado");
                 return Ok(plataforma);
             }
             catch (Exception ex)
@@ -98,7 +98,7 @@ namespace GameDB.Controllers
                 return NotFound();
             }
             Repositorio.ApagarPlataforma(resultado);
-            LogService.RegistrarLog(DateTime.Now, 2, $"O Console {resultado.Console} Foi apagado do Banco", "");
+            LogService.RegistrarLog(DateTime.Now, 2, $"O Console {resultado.Console} Foi apagado do Banco", "Nenhum erro encontrado");
             return Ok(resultado);
         }
     }

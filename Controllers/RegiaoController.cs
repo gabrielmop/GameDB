@@ -25,7 +25,7 @@ namespace GameDB.Controllers
             try
             {
                 var result = Repositorio.CadastrarRegiao(regiao);
-                LogService.RegistrarLog(DateTime.Now, 2, $"A região {regiao.RegiaoNome} foi Adicionada ao banco", "");
+                LogService.RegistrarLog(DateTime.Now, 2, $"A região {regiao.RegiaoNome} foi Adicionada ao banco", "Nenhum erro encontrado");
                 return Ok(result);
             }
             catch (Exception ex)
@@ -61,7 +61,7 @@ namespace GameDB.Controllers
                     return NotFound("Região não encontrada");
                 }
                 Repositorio.EdtiarRegiao(regiao);
-                LogService.RegistrarLog(DateTime.Now, 2, $"A região {regiao.RegiaoNome} foi editada no banco", "");
+                LogService.RegistrarLog(DateTime.Now, 2, $"A região {regiao.RegiaoNome} foi editada no banco", "Nenhum erro encontrado");
                 return Ok(regiao);
             }
             catch (Exception ex)
@@ -82,7 +82,7 @@ namespace GameDB.Controllers
                     return NotFound("Região não encontrada, tente novamente");
                 }
                 Repositorio.ApagarRegiao(busca);
-                LogService.RegistrarLog(DateTime.Now, 2, $"A região {busca.RegiaoNome} foi Apagada do banco", "");
+                LogService.RegistrarLog(DateTime.Now, 2, $"A região {busca.RegiaoNome} foi Apagada do banco", "Nenhum erro encontrado");
                 return NoContent();
             }
             catch (Exception ex)
