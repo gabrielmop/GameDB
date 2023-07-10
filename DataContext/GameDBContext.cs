@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
-using GameDB.Models;
-using static GameDB.Models.N3DS;
+using static GameDB.Models.Consoles.N3DS;
+using GameDB.Models.Structure;
+using GameDB.Models.Consoles;
 
 namespace GameDB.DataContext
 {

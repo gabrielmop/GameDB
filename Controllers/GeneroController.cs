@@ -1,6 +1,6 @@
-﻿using GameDB.Models;
-using GameDB.Repository.Interface;
-using GameDB.Services.Interfaces;
+﻿using GameDB.Models.Structure;
+using GameDB.Repository.Interface.Structure;
+using GameDB.Services.Interfaces.Struture;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;

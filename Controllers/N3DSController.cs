@@ -1,5 +1,6 @@
-﻿using GameDB.Models;
-using GameDB.Services.Interfaces;
+﻿using GameDB.Models.Consoles;
+using GameDB.Services.Interfaces.Console;
+using GameDB.Services.Interfaces.Struture;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;

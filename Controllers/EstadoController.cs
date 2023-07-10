@@ -1,6 +1,6 @@
-﻿using GameDB.Models;
-using GameDB.Repository.Interface;
-using GameDB.Services.Interfaces;
+﻿using GameDB.Models.Structure;
+using GameDB.Repository.Interface.Structure;
+using GameDB.Services.Interfaces.Struture;
 using Microsoft.AspNetCore.Mvc;
 
 namespace GameDB.Controllers
@@ -9,12 +9,12 @@ namespace GameDB.Controllers
     [ApiController]
     public class EstadoController : ControllerBase
     {
-        private readonly IEstadoRepository Repositorio;
+        private readonly IEstadoServices Service;
         private readonly IlogService LogService;
 
-        public EstadoController(IEstadoRepository _repositorio, IlogService _Log)
+        public EstadoController(IEstadoServices _service, IlogService _Log)
         {
-            Repositorio = _repositorio;
+            Service = _service;
             LogService = _Log;
         }
 
@@ -23,7 +23,7 @@ namespace GameDB.Controllers
         {
             try
             {
-                var result = Repositorio.RegistrarEstado(estado);
+                var result = Service.RegistrarEstado(estado);
                 LogService.RegistrarLog(DateTime.Now, 2, $"O Estado {estado.EstadoNome} Foi registrado no Banco", "Nenhum erro encontrado");
                 return Ok(result);
             }
@@ -39,7 +39,7 @@ namespace GameDB.Controllers
         {
             try
             {
-                var result = Repositorio.ListarEstados();
+                var result = Service.ListarEstados();
                 return Ok(result);
             }
             catch (System.Exception ex)
@@ -54,7 +54,7 @@ namespace GameDB.Controllers
         {
             try
             {
-                var retrono = Repositorio.ProcurarEstado(id);
+                var retrono = Service.ProcurarEstado(id);
                 if (retrono == null)
                 {
                     return NotFound();
@@ -73,12 +73,12 @@ namespace GameDB.Controllers
         {
             try
             {
-                var busca = Repositorio.ProcurarEstado(id);
+                var busca = Service.ProcurarEstado(id);
                 if (busca == null)
                 {
                     return NotFound("Genero não encontrado");
                 }
-                Repositorio.EditarEstado(estado);
+                Service.EditarEstado(estado);
                 LogService.RegistrarLog(DateTime.Now, 2, $"O Estado {estado.EstadoNome} Foi Alterado no Banco", "Nenhum erro encontrado");
                 return Ok(estado);
             }
@@ -95,13 +95,13 @@ namespace GameDB.Controllers
         {
             try
             {
-                var busca = Repositorio.ProcurarEstado(id);
+                var busca = Service.ProcurarEstado(id);
                 if (busca == null)
                 {
                     return NotFound();
                 }
 
-                Repositorio.ApagarEstado(busca);
+                Service.ApagarEstado(busca);
                 LogService.RegistrarLog(DateTime.Now, 2, $"O Estado {busca.EstadoNome} Foi apagado do Banco", "Nenhum erro encontrado");
                 return NoContent();
 

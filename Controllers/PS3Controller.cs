@@ -1,12 +1,13 @@
-﻿using GameDB.Models;
-using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.VisualBasic;
 using System.Globalization;
 using GameDB.Services;
 using GameDB.Repository.Interface;
-using GameDB.Services.Interfaces;
+using GameDB.Models.Consoles;
+using GameDB.Services.Interfaces.Struture;
+using GameDB.Services.Interfaces.Consoles;
 
 namespace GameDB.Controllers
 {
