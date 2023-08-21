@@ -6,25 +6,25 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace GameDB.Controllers
 {
-    public class PS4Controller : ControllerBase
+    public class PS5Controller : ControllerBase
     {
-        private readonly IPS4Service _service;
+        private readonly IPS5Service _service;
         private readonly IlogService LogService;
 
-        public PS4Controller(IPS4Service service, IlogService logService)
+        public PS5Controller(IPS5Service service, IlogService logService)
         {
             _service = service;
             LogService = logService;
         }
 
-        [HttpPost("adicionar-Jogo-PS4")]
-        public IActionResult AdiocionarJogo([FromForm]Ps4 ps4)
+        [HttpPost("adicionar-Jogo-PS5")]
+        public IActionResult AdiocionarJogo([FromForm] PS5 ps5)
         {
             try
             {
-                _service.AdicionarJogo(ps4);
-                LogService.RegistrarLog(DateTime.Now, 2, $"O Jogo de PS4 {ps4.Nome} foi adicionado ao banco, custo de R${ps4.Preco}", "Nenhum erro encontrado");
-                return Ok(ps4);
+                _service.AdicionarJogo(ps5);
+                LogService.RegistrarLog(DateTime.Now, 2, $"O Jogo de PS5 {ps5.Nome} foi adicionado ao banco, custo de R${ps5.Preco}", "Nenhum erro encontrado");
+                return Ok(ps5);
             }
             catch (Exception ex)
             {
@@ -33,15 +33,15 @@ namespace GameDB.Controllers
             }
         }
 
-        [HttpGet("Listar-Jogo-Ps4")]
-        public IActionResult ListarJogos(bool incluiPS5)
+        [HttpGet("Listar-Jogos-Ps5")]
+        public IActionResult ListarJogos()
         {
-           var result = _service.ListarJogo(incluiPS5);
+           var result = _service.ListarJogo();
             return Ok(result);
         }
 
-        [HttpPut("Editar-Jogo-Ps4")]
-        public IActionResult EditarJogo(int id, Ps4 ps4)
+        [HttpPut("Editar-Jogo-Ps5")]
+        public IActionResult EditarJogo(int id, PS5 ps5)
         {
             try
             {
@@ -50,9 +50,9 @@ namespace GameDB.Controllers
                 {
                     return BadRequest("Jogo não encontrado");
                 }
-                _service.EditarJogo(ps4);
-                LogService.RegistrarLog(DateTime.Now, 2, $"O Jogo de PS4 de ID {ps4.GameId} foi editado para {ps4.Nome}", "Nenhum erro encontrado");
-                return Ok(ps4);
+                _service.EditarJogo(ps5);
+                LogService.RegistrarLog(DateTime.Now, 2, $"O Jogo de PS5 de ID {ps5.GameID} foi editado para {ps5.Nome}", "Nenhum erro encontrado");
+                return Ok(ps5);
             }
             catch (Exception ex)
             {
@@ -61,7 +61,7 @@ namespace GameDB.Controllers
             }
         }
 
-        [HttpDelete("Apagar-jogo-Ps4")]
+        [HttpDelete("Apagar-jogos-Ps5")]
         public IActionResult ApagarJogo(int id)
         {
             try
@@ -72,8 +72,8 @@ namespace GameDB.Controllers
                     return BadRequest("Jogo não encontrado");
                 }
                 _service.ApagarJogo(busca);
-                LogService.RegistrarLog(DateTime.Now, 2, $"O Jogo de PS4 de ID {id} foi apagado do banco","Nenhum erro encontrado");
-                return Ok();
+                LogService.RegistrarLog(DateTime.Now, 2, $"O Jogo de PS5 {busca.Nome} foi apagado do banco","Nenhum erro encontrado");
+                return Ok($"O jogo {busca.Nome} foi apagado com sucesso");
             }
             catch (Exception ex)
             {
@@ -82,7 +82,7 @@ namespace GameDB.Controllers
             }
         }
 
-        [HttpPatch("Editar-Jogo-Ps4-Parcialmente")]
+        [HttpPatch("Editar-Jogo-Ps5-Parcialmente")]
         public IActionResult EditarParcialmente(int id, [FromBody] JsonPatchDocument patch)
         {
             try
@@ -99,7 +99,7 @@ namespace GameDB.Controllers
                 }
 
                 _service.EditarParcialmente(patch, busca);
-                LogService.RegistrarLog(DateTime.Now, 2, $"O Jogo de PS4 {busca.Nome} foi editado no banco", "Nenhum erro encontrado");
+                LogService.RegistrarLog(DateTime.Now, 2, $"O Jogo de PS5 {busca.Nome} foi editado no banco", "Nenhum erro encontrado");
                 return Ok(busca);
             }
             catch (Exception ex)

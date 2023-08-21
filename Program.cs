@@ -3,11 +3,13 @@ using GameDB.Repository.Consoles;
 using GameDB.Repository.Interface.Consoles;
 using GameDB.Repository.Interface.Structure;
 using GameDB.Repository.Structure;
+using GameDB.Services.Interface.Structure;
 using GameDB.Services.Consoles;
 using GameDB.Services.Interfaces.Console;
 using GameDB.Services.Interfaces.Consoles;
 using GameDB.Services.Interfaces.Struture;
 using GameDB.Services.Structure;
+using GameDB.Services.Interfaces.IStruture;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -22,15 +24,23 @@ builder.Services.AddTransient<IGeneroRepository, GeneroRepository>();
 builder.Services.AddTransient<IPlataformaRepository, PlataformaRepository>();
 builder.Services.AddTransient<IregiaoRepository, RegiaoRepository>();
 builder.Services.AddTransient<IPs3Repository, Ps3Repository>();
-builder.Services.AddTransient<IPS3Service, Ps3Serivce>();
 builder.Services.AddTransient<IPS4Repository, PS4Repository>();
-builder.Services.AddTransient<IPS4Service, PS4Service>();
+builder.Services.AddTransient<IPS5Repository, PS5Repository>();
 builder.Services.AddTransient<IlogRepository, LogRepository>();
-builder.Services.AddTransient<IlogService, LogService>();
 builder.Services.AddTransient<IN3DSRepository, N3DSRepository>();
-builder.Services.AddTransient<IN3DSService, N3DSService>();
 builder.Services.AddTransient<IEstadoRepository, EstadoRepository>();
+
+
+builder.Services.AddTransient<IPS3Service, Ps3Serivce>();
+builder.Services.AddTransient<IPS4Service, PS4Service>();
+builder.Services.AddTransient<IPS5Service, PS5Service>();
+builder.Services.AddTransient<IlogService, LogService>();
+builder.Services.AddTransient<IN3DSService, N3DSService>();
 builder.Services.AddTransient<IEstadoServices, EstadoService>();
+builder.Services.AddTransient<IGeneroService, GeneroService>();
+builder.Services.AddTransient<IRegiaoService, RegiaoService>();
+builder.Services.AddTransient<IPlataformaService, PlataformaService>();
+
 
 var app = builder.Build();
 

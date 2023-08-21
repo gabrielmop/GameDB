@@ -1,5 +1,6 @@
 ﻿using GameDB.Models.Structure;
 using GameDB.Repository.Interface.Structure;
+using GameDB.Services.Interface.Structure;
 using GameDB.Services.Interfaces.Struture;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -10,12 +11,12 @@ namespace GameDB.Controllers
     [ApiController]
     public class PlataformaController : ControllerBase
     {
-        private readonly IPlataformaRepository Repositorio;
+        private readonly IPlataformaService service;
         private readonly IlogService LogService;
 
-        public PlataformaController(IPlataformaRepository _repositorio, IlogService _log)
+        public PlataformaController(IPlataformaService _service, IlogService _log)
         {
-            Repositorio = _repositorio;
+            service = _service;
             LogService = _log;
 
         }
@@ -26,7 +27,7 @@ namespace GameDB.Controllers
         {
             try
             {
-                var result = Repositorio.RegistrarPlataforma(plataforma);
+                var result = service.RegistrarPlataforma(plataforma);
                 LogService.RegistrarLog(DateTime.Now, 2, $"a Plataforma {plataforma.Console} da {plataforma.Marca}  Foi registrado no Banco", "Nenhum erro encontrado");
                 return Ok(result);
                 
@@ -43,7 +44,7 @@ namespace GameDB.Controllers
         {
             try
             {
-                var result = Repositorio.ListarPlataforma();
+                var result = service.ListarPlataforma();
                 return Ok(result);
             }
             catch (Exception ex)
@@ -57,7 +58,7 @@ namespace GameDB.Controllers
         {
             try
             {
-                var resultado = Repositorio.ProcurarPlataforma(id);
+                var resultado = service.ProcurarPlataforma(id);
                 if (resultado == null)
                 {
                     return NotFound();
@@ -74,12 +75,12 @@ namespace GameDB.Controllers
         {
             try
             {
-                var busca = Repositorio.ProcurarPlataforma(id);
+                var busca = service.ProcurarPlataforma(id);
                 if (busca == null)
                 {
                     return NotFound();
                 }
-                Repositorio.EditarPlataforma(plataforma);
+                service.EditarPlataforma(plataforma);
                 LogService.RegistrarLog(DateTime.Now, 2, $"O Console {plataforma.Console} Foi alterado no Banco", "Nenhum erro encontrado");
                 return Ok(plataforma);
             }
@@ -92,12 +93,12 @@ namespace GameDB.Controllers
         [HttpDelete("Apagar-Plataforma/{id}")]
         public IActionResult ApagarPlataforma(int id)
         {
-            var resultado = Repositorio.ProcurarPlataforma(id);
+            var resultado = service.ProcurarPlataforma(id);
             if (resultado == null)
             {
                 return NotFound();
             }
-            Repositorio.ApagarPlataforma(resultado);
+            service.ApagarPlataforma(resultado);
             LogService.RegistrarLog(DateTime.Now, 2, $"O Console {resultado.Console} Foi apagado do Banco", "Nenhum erro encontrado");
             return Ok(resultado);
         }

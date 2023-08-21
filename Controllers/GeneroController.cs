@@ -1,5 +1,6 @@
 ﻿using GameDB.Models.Structure;
 using GameDB.Repository.Interface.Structure;
+using GameDB.Services.Interface.Structure;
 using GameDB.Services.Interfaces.Struture;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.JsonPatch;
@@ -14,12 +15,12 @@ namespace GameDB.Controllers
     [ApiController]
     public class GeneroController : ControllerBase
     {
-        private readonly IGeneroRepository Repositorio;
+        private readonly IGeneroService service;
         private readonly IlogService LogService;
 
-        public GeneroController(IGeneroRepository _repositorio, IlogService _Log)
+        public GeneroController(IGeneroService _service, IlogService _Log)
         {
-            Repositorio = _repositorio;
+            service = _service;
             LogService = _Log;
         }
 
@@ -28,7 +29,7 @@ namespace GameDB.Controllers
         {
             try
             {
-                var result = Repositorio.RegistrarGenero(genero);
+                var result = service.RegistrarGenero(genero);
                 LogService.RegistrarLog(DateTime.Now, 2, $"O genero {genero.GeneroNome} Foi registrado no Banco", "Nenhum erro encontrado");
                 return Ok(result);
             }
@@ -44,7 +45,7 @@ namespace GameDB.Controllers
         {
             try
             {
-                var result = Repositorio.ListarGeneros();
+                var result = service.ListarGeneros();
                 return Ok(result);
             }
             catch (System.Exception ex)
@@ -59,7 +60,7 @@ namespace GameDB.Controllers
         {
             try
             {
-                var retrono = Repositorio.ProcurarGenero(id);
+                var retrono = service.ProcurarGenero(id);
                 if (retrono == null)
                 {
                     return NotFound();
@@ -78,12 +79,12 @@ namespace GameDB.Controllers
         {
             try
             {
-                var busca = Repositorio.ProcurarGenero(id);
+                var busca = service.ProcurarGenero(id);
                 if (busca == null)
                 {
                     return NotFound("Genero não encontrado");
                 }
-                Repositorio.EditarGenero(genero);
+                service.EditarGenero(genero);
                 LogService.RegistrarLog(DateTime.Now, 2, $"O genero {genero.GeneroNome} Foi Alterado no Banco", "Nenhum erro encontrado");
                 return Ok(genero);
             }
@@ -95,43 +96,19 @@ namespace GameDB.Controllers
             }
         }
 
-        [HttpPatch("Editar-Genero-Parcialmente/{id}")]
-        public IActionResult EditarParcialmente(int id, [FromBody]JsonPatchDocument patch)
-        {
-            try
-            {
-                if (patch == null)
-                {
-                    return BadRequest();
-                }
-                var genero = Repositorio.ProcurarGenero(id);
-                if (genero == null)
-                {
-                    return NotFound();
-                }
-                Repositorio.EditarGeneroParcialmente(patch, genero);
-                LogService.RegistrarLog(DateTime.Now, 2, $"O genero {genero.GeneroNome} Foi Alerado no Banco", "Nenhum erro encontrado");
-                return Ok(genero);
-            }
-            catch (System.Exception ex)
-            {
-                LogService.RegistrarLog(DateTime.Now, 1, "Um Erro foi encontrado", ex.Message);
-                return BadRequest("Um erro foi encontrado");
-            }
-        }
 
         [HttpDelete("Apagar-Genero/{id}")]
         public IActionResult ApagarGenero(int id)
         {
             try
             {
-                var busca = Repositorio.ProcurarGenero(id);
+                var busca = service.ProcurarGenero(id);
                 if (busca == null)
                 {
                     return NotFound();
                 }
 
-                Repositorio.ApagarGenero(busca);
+                service.ApagarGenero(busca);
                 LogService.RegistrarLog(DateTime.Now, 2, $"O genero {busca.GeneroNome} Foi apagado do Banco", "Nenhum erro encontrado");
                 return NoContent();
 

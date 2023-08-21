@@ -3,6 +3,7 @@ using GameDB.Models.Consoles;
 using GameDB.Repository.Interface.Consoles;
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
 
 namespace GameDB.Repository.Consoles
 {
@@ -43,10 +44,20 @@ namespace GameDB.Repository.Consoles
             DBC.SaveChanges();
         }
 
-        public List<Ps4Lista> ListarJogo()
+        public List<Ps4Lista> ListarJogo(bool incluiPS5)
         {
-            var Lista = DBC.Ps4l.FromSqlRaw("execute dbo.Listar_Jogos_PS4");
-            return Lista.ToList();
+            
+            if (incluiPS5 == true)
+            {
+                var Lista = DBC.Ps4l.FromSqlRaw("execute Listar_Jogos_PS4_E_PS5");
+                return Lista.ToList();
+            }
+            else
+            {
+               var Lista = DBC.Ps4l.FromSqlRaw("execute dbo.Listar_Jogos_PS4");
+               return Lista.ToList();
+            }           
+           
 
         }
 

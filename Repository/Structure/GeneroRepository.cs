@@ -32,13 +32,6 @@ namespace GameDB.Repository.Structure
             DBC.SaveChanges();
         }
 
-        public void EditarGeneroParcialmente(JsonPatchDocument patch, Genero genero)
-        {
-            patch.ApplyTo(genero);
-            DBC.Entry(genero).State = EntityState.Modified;
-            DBC.SaveChanges();
-
-        }
 
         public List<Genero> ListarGeneros()
         {

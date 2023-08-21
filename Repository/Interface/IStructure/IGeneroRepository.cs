@@ -11,7 +11,6 @@ namespace GameDB.Repository.Interface.Structure
         public void ApagarGenero(Genero genero);
         public Genero ProcurarGenero(int id);
         public List<Genero> ListarGeneros();
-        public void EditarGeneroParcialmente(JsonPatchDocument patch, Genero genero);
 
     }
 }

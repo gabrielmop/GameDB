@@ -4,27 +4,27 @@ using System.ComponentModel.DataAnnotations;
 
 namespace GameDB.Models.Consoles
 {
-    public partial class Ps4
+    public partial class PS5
     {
         [Key]
-        public int GameId { get; set; }
+        public int GameID { get; set; }
         public string Nome { get; set; }
         public string Serial { get; set; }
         public int RegiaoId { get; set; }
         public int PlataformaId { get; set; }
-        public int GeneroId { get; set; }
+        public int GeneroID { get; set; }
         public DateTime Lancamento { get; set; }
         public double Tamanho { get; set; }
         public double Preco { get; set; }
         public DateTime Aquisicao { get; set; }
         public string LocalAdq { get; set; }
         public string Observacoes { get; set; }
-        public bool? Ps4pro { get; set; }
-        public int? EstadoId { get; set; }
+        public bool? DualSense { get; set; }
+        public int? EstadoID { get; set; }
 
     }
 
-    public partial class Ps4Lista
+    public partial class Ps5Lista
     {
         [Key]
         public int GameId { get; set; }

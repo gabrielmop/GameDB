@@ -5,40 +5,40 @@ using Microsoft.AspNetCore.JsonPatch;
 
 namespace GameDB.Services.Consoles
 {
-    public class PS4Service : IPS4Service
+    public class PS5Service : IPS5Service
     {
-        private readonly IPS4Repository Repositorio;
+        private readonly IPS5Repository Repositorio;
 
-        public PS4Service(IPS4Repository repositorio)
+        public PS5Service(IPS5Repository repositorio)
         {
             Repositorio = repositorio;
         }
 
-        public Ps4 AdicionarJogo(Ps4 ps4)
+        public PS5 AdicionarJogo(PS5 ps5)
         {
-            return Repositorio.AdicionarJogo(ps4);
+            return Repositorio.AdicionarJogo(ps5);
 
         }
 
-        public void ApagarJogo(Ps4 ps4)
+        public void ApagarJogo(PS5 ps5)
         {
-            Repositorio.ApagarJogo(ps4);
+            Repositorio.ApagarJogo(ps5);
         }
 
-        public void EditarJogo(Ps4 ps4)
+        public void EditarJogo(PS5 ps5)
         {
-            Repositorio.EditarJogo(ps4);
+            Repositorio.EditarJogo(ps5);
 
         }
 
-        public void EditarParcialmente(JsonPatchDocument patch, Ps4 ps4)
+        public void EditarParcialmente(JsonPatchDocument patch, PS5 ps5)
         {
-            Repositorio.EditarParcialmente(patch, ps4);
+            Repositorio.EditarParcialmente(patch, ps5);
         }
 
-        public List<Ps4Lista> ListarJogo(bool incluiPS5)
+        public List<Ps5Lista> ListarJogo()
         {
-            var result = Repositorio.ListarJogo(incluiPS5);
+            var result = Repositorio.ListarJogo();
             foreach (var item in result)
             {
                 if (item.Preco == "R$ 0,00")
@@ -57,7 +57,7 @@ namespace GameDB.Services.Consoles
 
         }
 
-        public Ps4 ProcurarJogo(int id)
+        public PS5 ProcurarJogo(int id)
         {
             return Repositorio.ProcurarJogo(id);
         }
