@@ -1,13 +1,7 @@
 ﻿using GameDB.Models.Structure;
-using GameDB.Repository.Interface.Structure;
 using GameDB.Services.Interface.Structure;
 using GameDB.Services.Interfaces.Struture;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.VisualBasic;
-using System.Data.SqlTypes;
-using System.Globalization;
 
 namespace GameDB.Controllers
 {
@@ -31,7 +25,7 @@ namespace GameDB.Controllers
             {
                 var result = service.RegistrarGenero(genero);
                 LogService.RegistrarLog(DateTime.Now, 2, $"O genero {genero.GeneroNome} Foi registrado no Banco", "Nenhum erro encontrado");
-                return Ok(result);
+                return Ok($"O genero {genero.GeneroNome} Foi adicionado com sucesso");
             }
             catch (Exception ex)
             {
@@ -48,7 +42,7 @@ namespace GameDB.Controllers
                 var result = service.ListarGeneros();
                 return Ok(result);
             }
-            catch (System.Exception ex)
+            catch (Exception ex)
             {
                 return BadRequest($"{ex.Message}");
 
@@ -67,7 +61,7 @@ namespace GameDB.Controllers
                 }
                 return Ok(retrono);
             }
-            catch (System.Exception ex)
+            catch (Exception ex)
             {
                 return BadRequest($"{ex.Message}");
 
@@ -85,10 +79,10 @@ namespace GameDB.Controllers
                     return NotFound("Genero não encontrado");
                 }
                 service.EditarGenero(genero);
-                LogService.RegistrarLog(DateTime.Now, 2, $"O genero {genero.GeneroNome} Foi Alterado no Banco", "Nenhum erro encontrado");
-                return Ok(genero);
+                LogService.RegistrarLog(DateTime.Now, 2, $"O genero {busca.GeneroNome} Foi Alterado para {genero.GeneroNome} no Banco", "Nenhum erro encontrado");
+                return Ok($"O genero {busca.GeneroNome} Foi alterado para {genero.GeneroNome} com sucesso!");
             }
-            catch (System.Exception ex)
+            catch (Exception ex)
             {
                 LogService.RegistrarLog(DateTime.Now, 1, "Um Erro foi encontrado", ex.Message);
                 return BadRequest($"{ex.Message}");
@@ -110,10 +104,10 @@ namespace GameDB.Controllers
 
                 service.ApagarGenero(busca);
                 LogService.RegistrarLog(DateTime.Now, 2, $"O genero {busca.GeneroNome} Foi apagado do Banco", "Nenhum erro encontrado");
-                return NoContent();
+                return Ok($"O genero {busca.GeneroNome} Foi apagado com sucesso!");
 
             }
-            catch (System.Exception ex)
+            catch (Exception ex)
             {
                 LogService.RegistrarLog(DateTime.Now, 1, "Um Erro foi encontrado", ex.Message);
                 return BadRequest($"{ex.Message}");

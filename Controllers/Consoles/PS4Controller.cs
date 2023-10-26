@@ -24,7 +24,7 @@ namespace GameDB.Controllers
             {
                 _service.AdicionarJogo(ps4);
                 LogService.RegistrarLog(DateTime.Now, 2, $"O Jogo de PS4 {ps4.Nome} foi adicionado ao banco, custo de R${ps4.Preco}", "Nenhum erro encontrado");
-                return Ok(ps4);
+                return Ok($"O jogo {ps4.Nome} foi adicionado com sucesso!");
             }
             catch (Exception ex)
             {
@@ -51,8 +51,8 @@ namespace GameDB.Controllers
                     return BadRequest("Jogo não encontrado");
                 }
                 _service.EditarJogo(ps4);
-                LogService.RegistrarLog(DateTime.Now, 2, $"O Jogo de PS4 de ID {ps4.GameId} foi editado para {ps4.Nome}", "Nenhum erro encontrado");
-                return Ok(ps4);
+                LogService.RegistrarLog(DateTime.Now, 2, $"O Jogo de PS4 de ID {busca.GameId} foi editado para {ps4.Nome}", "Nenhum erro encontrado");
+                return Ok($"O jogo {busca.Nome} foi editado para {ps4.Nome} com sucesso!");
             }
             catch (Exception ex)
             {
@@ -72,8 +72,8 @@ namespace GameDB.Controllers
                     return BadRequest("Jogo não encontrado");
                 }
                 _service.ApagarJogo(busca);
-                LogService.RegistrarLog(DateTime.Now, 2, $"O Jogo de PS4 de ID {id} foi apagado do banco","Nenhum erro encontrado");
-                return Ok();
+                LogService.RegistrarLog(DateTime.Now, 2, $"O Jogo de PS4 {busca.Nome} foi apagado do banco","Nenhum erro encontrado");
+                return Ok($"O jogo {busca.Nome} foi apagado com sucesso!");
             }
             catch (Exception ex)
             {
@@ -100,7 +100,7 @@ namespace GameDB.Controllers
 
                 _service.EditarParcialmente(patch, busca);
                 LogService.RegistrarLog(DateTime.Now, 2, $"O Jogo de PS4 {busca.Nome} foi editado no banco", "Nenhum erro encontrado");
-                return Ok(busca);
+                return Ok($"O jogo {busca.Nome} foi editado com sucesso!");
             }
             catch (Exception ex)
             {

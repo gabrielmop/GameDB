@@ -2,24 +2,25 @@
 
 namespace GameDB.Models.Consoles
 {
-    public class Ps3
+    public class Xbox360
     {
+        [Key]
         public int GameId { get; set; }
         public string? Nome { get; set; }
         public string? Serial { get; set; }
         public int RegiaoId { get; set; }
-        public int PlataformaId { get; set; } = 1;
+        public int PlataformaId { get; set; }
         public int GeneroId { get; set; }
         public DateTime Lancamento { get; set; }
         public double? Preco { get; set; }
         public DateTime? Aquisicao { get; set; }
         public string? LocalAdq { get; set; }
         public string? Observacoes { get; set; }
-        public bool? Instalacao { get; set; }
+        public bool? Kinect { get; set; }
         public int EstadoID { get; set; }
     }
 
-    public class Ps3Lista
+    public class Xbox360Lista
     {
         [Key]
         public int GameId { get; set; }
@@ -33,7 +34,7 @@ namespace GameDB.Models.Consoles
         public string? Aquisicao { get; set; }
         public string? LocalAdq { get; set; }
         public string? Observacoes { get; set; }
-        public string? Instalacao { get; set; }
+        public string? Kinect { get; set; }
         public string? Estado { get; set; }
     }
 

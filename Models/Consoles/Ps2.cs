@@ -2,8 +2,9 @@
 
 namespace GameDB.Models.Consoles
 {
-    public class Ps3
+    public class Ps2
     {
+        [Key]
         public int GameId { get; set; }
         public string? Nome { get; set; }
         public string? Serial { get; set; }
@@ -15,11 +16,11 @@ namespace GameDB.Models.Consoles
         public DateTime? Aquisicao { get; set; }
         public string? LocalAdq { get; set; }
         public string? Observacoes { get; set; }
-        public bool? Instalacao { get; set; }
+        public bool? Widescreen { get; set; }
         public int EstadoID { get; set; }
     }
 
-    public class Ps3Lista
+    public class Ps2Lista
     {
         [Key]
         public int GameId { get; set; }
@@ -33,7 +34,7 @@ namespace GameDB.Models.Consoles
         public string? Aquisicao { get; set; }
         public string? LocalAdq { get; set; }
         public string? Observacoes { get; set; }
-        public string? Instalacao { get; set; }
+        public string? Widescreen { get; set; }
         public string? Estado { get; set; }
     }
 

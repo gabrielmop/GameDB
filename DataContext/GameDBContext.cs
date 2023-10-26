@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata;
-using static GameDB.Models.Consoles.N3DS;
+﻿using Microsoft.EntityFrameworkCore;
 using GameDB.Models.Structure;
 using GameDB.Models.Consoles;
 
@@ -27,6 +23,10 @@ namespace GameDB.DataContext
         public virtual DbSet<Ps4Lista> Ps4l { get; set; } = null!;
         public virtual DbSet<PS5> Ps5 { get; set; } = null!;
         public virtual DbSet<Ps5Lista> Ps5l { get; set; } = null!;
+        public virtual DbSet<Xbox360> Xbox360 { get; set; } = null!;
+        public virtual DbSet<Xbox360Lista> X360l { get; set; } = null!;
+        public virtual DbSet<Ps2> Ps2 { get; set; } = null!;
+        public virtual DbSet<Ps2Lista> Ps2l { get; set; } = null!;
         public virtual DbSet<Regiao> Regioes { get; set; } = null!;
         public virtual DbSet<Logs> Logs { get; set; } = null!;
         public virtual DbSet<N3DS> N3Ds { get; set; } = null!;

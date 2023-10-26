@@ -1,7 +1,6 @@
 ﻿using GameDB.Models.Structure;
 using GameDB.Repository.Interface.Structure;
 using GameDB.Services.Interfaces.Struture;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace GameDB.Controllers
@@ -26,7 +25,7 @@ namespace GameDB.Controllers
             {
                 var result = Repositorio.CadastrarRegiao(regiao);
                 LogService.RegistrarLog(DateTime.Now, 2, $"A região {regiao.RegiaoNome} foi Adicionada ao banco", "Nenhum erro encontrado");
-                return Ok(result);
+                return Ok($"A Região {regiao.RegiaoNome} foi adicionada com sucesso!");
             }
             catch (Exception ex)
             {
@@ -43,7 +42,7 @@ namespace GameDB.Controllers
                 var Result = Repositorio.ListarRegioes();
                 return Ok(Result);
             }
-            catch (System.Exception ex)
+            catch (Exception ex)
             {
                 return BadRequest($"{ex.Message}");
 
@@ -61,8 +60,8 @@ namespace GameDB.Controllers
                     return NotFound("Região não encontrada");
                 }
                 Repositorio.EdtiarRegiao(regiao);
-                LogService.RegistrarLog(DateTime.Now, 2, $"A região {regiao.RegiaoNome} foi editada no banco", "Nenhum erro encontrado");
-                return Ok(regiao);
+                LogService.RegistrarLog(DateTime.Now, 2, $"A região {result.RegiaoNome} foi editada para {regiao.RegiaoNome}", "Nenhum erro encontrado");
+                return Ok($"A Região {result.RegiaoNome} foi alterada para {regiao.RegiaoNome} com sucesso");
             }
             catch (Exception ex)
             {
@@ -83,7 +82,7 @@ namespace GameDB.Controllers
                 }
                 Repositorio.ApagarRegiao(busca);
                 LogService.RegistrarLog(DateTime.Now, 2, $"A região {busca.RegiaoNome} foi Apagada do banco", "Nenhum erro encontrado");
-                return NoContent();
+                return Ok($"A Região {busca.RegiaoNome} foi apagada com sucesso!");
             }
             catch (Exception ex)
             {

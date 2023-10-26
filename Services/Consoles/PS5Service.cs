@@ -39,20 +39,6 @@ namespace GameDB.Services.Consoles
         public List<Ps5Lista> ListarJogo()
         {
             var result = Repositorio.ListarJogo();
-            foreach (var item in result)
-            {
-                if (item.Preco == "R$ 0,00")
-                {
-                    if (item.Observacoes.Contains("Videogame"))
-                    {
-                        item.Preco = "Bundle com o Videogame";
-                    }
-                    else
-
-                        item.Preco = "Presente";
-                }
-            }
-
             return result;
 
         }

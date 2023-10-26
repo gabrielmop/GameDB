@@ -25,7 +25,7 @@ namespace GameDB.Controllers
             {
                 var result = Service.RegistrarEstado(estado);
                 LogService.RegistrarLog(DateTime.Now, 2, $"O Estado {estado.EstadoNome} Foi registrado no Banco", "Nenhum erro encontrado");
-                return Ok(result);
+                return Ok($"O Estado {estado.EstadoNome} Foi registrado com sucesso!");
             }
             catch (Exception ex)
             {
@@ -42,7 +42,7 @@ namespace GameDB.Controllers
                 var result = Service.ListarEstados();
                 return Ok(result);
             }
-            catch (System.Exception ex)
+            catch (Exception ex)
             {
                 return BadRequest($"{ex.Message}");
 
@@ -61,7 +61,7 @@ namespace GameDB.Controllers
                 }
                 return Ok(retrono);
             }
-            catch (System.Exception ex)
+            catch (Exception ex)
             {
                 return BadRequest($"{ex.Message}");
 
@@ -79,10 +79,10 @@ namespace GameDB.Controllers
                     return NotFound("Genero não encontrado");
                 }
                 Service.EditarEstado(estado);
-                LogService.RegistrarLog(DateTime.Now, 2, $"O Estado {estado.EstadoNome} Foi Alterado no Banco", "Nenhum erro encontrado");
-                return Ok(estado);
+                LogService.RegistrarLog(DateTime.Now, 2, $"O Estado {busca.EstadoNome} Foi Alterado para {estado.EstadoNome}", "Nenhum erro encontrado");
+                return Ok($"O Estado {busca.EstadoNome} Foi alterado para {estado.EstadoNome} com sucesso!");
             }
-            catch (System.Exception ex)
+            catch (Exception ex)
             {
                 LogService.RegistrarLog(DateTime.Now, 1, "Um Erro foi encontrado", ex.Message);
                 return BadRequest($"{ex.Message}");
@@ -103,10 +103,10 @@ namespace GameDB.Controllers
 
                 Service.ApagarEstado(busca);
                 LogService.RegistrarLog(DateTime.Now, 2, $"O Estado {busca.EstadoNome} Foi apagado do Banco", "Nenhum erro encontrado");
-                return NoContent();
+                return Ok($"O Estado {busca.EstadoNome} Foi apagado com sucesso!");
 
             }
-            catch (System.Exception ex)
+            catch (Exception ex)
             {
                 LogService.RegistrarLog(DateTime.Now, 1, "Um Erro foi encontrado", ex.Message);
                 return BadRequest($"{ex.Message}");

@@ -48,11 +48,6 @@ namespace GameDB.Services.Consoles
                     {
                         item.Preco = "Veio com O Videogame";
                     }
-                    else
-                    {
-                        item.Preco = "Presente";
-                    }
-
                 }
             }
             return Result;

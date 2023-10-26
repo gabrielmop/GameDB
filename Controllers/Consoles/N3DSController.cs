@@ -1,7 +1,6 @@
 ﻿using GameDB.Models.Consoles;
 using GameDB.Services.Interfaces.Console;
 using GameDB.Services.Interfaces.Struture;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 
@@ -28,7 +27,7 @@ namespace GameDB.Controllers
             {
                 _service.AdicionarJogo(n3ds);
                 LogService.RegistrarLog(DateTime.Now, 2, $"O Jogo de 3DS {n3ds.Nome} foi adicionado ao banco, custo de R${n3ds.Preco}", "");
-                return Ok(n3ds);
+                return Ok($"O Jogo {n3ds.Nome} Foi adicionado com sucesso!");
             }
             catch (Exception ex)
             {
@@ -47,7 +46,7 @@ namespace GameDB.Controllers
             }
             catch (Exception ex)
             {
-                LogService.RegistrarLog(DateTime.Now, 1, "Um erro foi encontrado", ex.Message);
+                LogService.RegistrarLog(DateTime.Now, 1, "Um erro foi encontrado ao tentar listar os jogos de 3DS", ex.Message);
                 return BadRequest(ex.Message);
             }
         }
@@ -64,7 +63,7 @@ namespace GameDB.Controllers
                 }
                 _service.EditarJogo(N3ds);
                 LogService.RegistrarLog(DateTime.Now, 2, $"O Jogo de 3DS de id {result.GameId} foi editado no banco para {N3ds.Nome}", "Nenhum erro encontrado");
-                return Ok(N3ds);
+                return Ok($"O jogo {result.Nome} foi alterado para {N3ds.Nome} com sucesso!");
             }
             catch (Exception ex)
             {
@@ -84,8 +83,8 @@ namespace GameDB.Controllers
                     return BadRequest("Jogo não encontrado ou já apagado");
                 }
                 _service.ApagarJogo(busca);
-                LogService.RegistrarLog(DateTime.Now, 2, $"O jogo De 3DS {busca.Nome} de ID {busca.GameId} foi apagado do banco", "Nenhum erro foi encontrado");
-                return Ok(busca);
+                LogService.RegistrarLog(DateTime.Now, 2, $"O jogo De 3DS {busca.Nome} foi apagado do banco", "Nenhum erro foi encontrado");
+                return Ok($"O jogo {busca.Nome} Foi apagado com sucesso!");
             }
             catch (Exception ex)
             {
@@ -116,7 +115,7 @@ namespace GameDB.Controllers
                  "value": "O novo valor que precisa ser"*/
                 _service.EditarParcialmente(patch, busca);
                 LogService.RegistrarLog(DateTime.Now, 2, $"O jogo de 3DS {busca.Nome} foi alterado no banco", "Nenhum erro encontrado");
-                return Ok(busca);
+                return Ok($"O jogo {busca.Nome} foi alterado com sucesso!");
             }
             catch (Exception ex)
             {
