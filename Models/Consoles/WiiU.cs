@@ -2,7 +2,7 @@
 
 namespace GameDB.Models.Consoles
 {
-    public class Ps2
+    public class WiiU
     {
         [Key]
         public int GameId { get; set; }
@@ -16,11 +16,11 @@ namespace GameDB.Models.Consoles
         public DateTime? Aquisicao { get; set; }
         public string? LocalAdq { get; set; }
         public string? Observacoes { get; set; }
-        public bool? Widescreen { get; set; }
+        public bool? WiiMote { get; set; }
         public int EstadoID { get; set; }
     }
 
-    public class Ps2Lista
+    public class WiiULista
     {
         [Key]
         public int GameId { get; set; }
@@ -34,7 +34,7 @@ namespace GameDB.Models.Consoles
         public string? Aquisicao { get; set; }
         public string? LocalAdq { get; set; }
         public string? Observacoes { get; set; }
-        public string? Widescreen { get; set; }
+        public string? WiiMote { get; set; }
         public string? Estado { get; set; }
     }
 

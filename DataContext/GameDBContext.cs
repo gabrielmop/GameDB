@@ -25,6 +25,8 @@ namespace GameDB.DataContext
         public virtual DbSet<Ps5Lista> Ps5l { get; set; } = null!;
         public virtual DbSet<Xbox360> Xbox360 { get; set; } = null!;
         public virtual DbSet<Xbox360Lista> X360l { get; set; } = null!;
+        public virtual DbSet<WiiU> WiiU { get; set; } = null!;
+        public virtual DbSet<WiiULista> WiiUl { get; set; } = null;
         public virtual DbSet<Ps2> Ps2 { get; set; } = null!;
         public virtual DbSet<Ps2Lista> Ps2l { get; set; } = null!;
         public virtual DbSet<Regiao> Regioes { get; set; } = null!;
