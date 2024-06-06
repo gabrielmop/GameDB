@@ -1,6 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
-using GameDB.Models.Structure;
+﻿using GameDB.Models.Structure;
 using GameDB.Models.Consoles;
+using Microsoft.EntityFrameworkCore;
 
 namespace GameDB.DataContext
 {
@@ -17,7 +17,7 @@ namespace GameDB.DataContext
 
         public virtual DbSet<Genero> Generos { get; set; } = null!;
         public virtual DbSet<Plataforma> Plataformas { get; set; } = null!;
-        public virtual DbSet<Ps3> Ps3s { get; set; } = null!;
+        public virtual DbSet<Ps3> Ps3 { get; set; } = null!;
         public virtual DbSet<Ps3Lista> Ps3l { get; set; } = null!;
         public virtual DbSet<Ps4> Ps4s { get; set; } = null!;
         public virtual DbSet<Ps4Lista> Ps4l { get; set; } = null!;
@@ -40,7 +40,7 @@ namespace GameDB.DataContext
             if (!optionsBuilder.IsConfigured)
             {
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-                optionsBuilder.UseSqlServer("Data Source=Moop_PC;Initial Catalog=GameDB;Integrated Security=true")
+                optionsBuilder.UseSqlServer("Data Source=Moop_PC;Initial Catalog=GameDB;Integrated Security=true;TrustServerCertificate=true")
                 .UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking);
             }
         }
@@ -67,31 +67,6 @@ namespace GameDB.DataContext
                 entity.Property(e => e.Marca).HasMaxLength(50);
             });
 
-            modelBuilder.Entity<Ps3>(entity =>
-            {
-                entity.HasKey(e => e.GameId)
-                    .HasName("PK__PS3__2AB897DD8C4F0C78");
-
-                entity.ToTable("PS3");
-
-                entity.Property(e => e.GameId).HasColumnName("GameID");
-
-                entity.Property(e => e.Aquisicao).HasColumnType("datetime");
-
-                entity.Property(e => e.GeneroId).HasColumnName("GeneroID");
-
-                entity.Property(e => e.Lancamento).HasColumnType("datetime");
-
-                entity.Property(e => e.LocalAdq).HasMaxLength(100);
-
-                entity.Property(e => e.Nome).HasMaxLength(350);
-
-                entity.Property(e => e.Observacoes).HasMaxLength(300);
-
-                entity.Property(e => e.Serial).HasMaxLength(15);           
-
-                
-            });
 
             modelBuilder.Entity<Ps4>(entity =>
             {

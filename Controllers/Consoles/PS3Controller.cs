@@ -57,7 +57,7 @@ namespace GameDB.Controllers.Consoles
                 LogService.RegistrarLog(DateTime.Now, 2, $"O Jogo de PS3 de ID {result.GameId} foi editado para {ps3.Nome}", "Nenhum erro encontrado");
                 return Ok($"O jogo {result.Nome} foi alterado para {ps3.Nome} com sucesso!");
             }
-            catch (Exception ex)
+            catch (InvalidCastException ex)
             {
                 LogService.RegistrarLog(DateTime.Now, 1, "Um Erro foi encontrado", ex.Message);
                 return BadRequest(ex.Message);

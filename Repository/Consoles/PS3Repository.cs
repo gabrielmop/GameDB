@@ -53,7 +53,9 @@ namespace GameDB.Repository.Consoles
 
         public Ps3 ProcurarJogo(int id)
         {
-            return DBC.Ps3s.Find(id);
+           
+            return DBC.Ps3.Find(id);
+         
 
         }
     }
