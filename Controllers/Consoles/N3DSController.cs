@@ -70,7 +70,7 @@ namespace GameDB.Controllers
             }
         }
 
-        [HttpPut("Editar-Jogo-N3ds")]
+        [HttpPut("Editar-Jogo-N3ds/{id}")]
         public IActionResult EditarJogo(int id, [FromForm] N3DS N3ds)
         {
             try
@@ -91,7 +91,7 @@ namespace GameDB.Controllers
             }
         }
 
-        [HttpDelete("Apagar-Jogo-N3ds")]
+        [HttpDelete("Apagar-Jogo-N3ds/{id}")]
         public IActionResult ApagarJogo(int id)
         {
             try
@@ -112,7 +112,7 @@ namespace GameDB.Controllers
             }
         }
 
-        [HttpPatch("Editar-parcialmente-jogo-N3DS")]
+        [HttpPatch("Editar-parcialmente-jogo-N3DS/{id}")]
         public IActionResult EditarParcialmente(int id, [FromBody] JsonPatchDocument patch)
         {
             try

@@ -62,7 +62,7 @@ namespace GameDB.Controllers.Consoles
             }
         }
 
-        [HttpPut("Editar-Jogo-WiiU")]
+        [HttpPut("Editar-Jogo-WiiU/{id}")]
         public IActionResult EditarJogo(int id, [FromForm] WiiU wu)
         {
             try
@@ -83,7 +83,7 @@ namespace GameDB.Controllers.Consoles
             }
         }
 
-        [HttpDelete("Apagar-Jogo-WiiU")]
+        [HttpDelete("Apagar-Jogo-WiiU/{id}")]
         public IActionResult ApagarJogo(int id)
         {
             try

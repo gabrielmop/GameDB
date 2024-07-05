@@ -62,7 +62,7 @@ namespace GameDB.Controllers.Consoles
             }
         }
 
-        [HttpPut("Editar-Jogo-PS3")]
+        [HttpPut("Editar-Jogo-PS3/{id}")]
         public IActionResult EditarJogo(int id, [FromForm] Ps3 ps3)
         {
             try
@@ -83,7 +83,7 @@ namespace GameDB.Controllers.Consoles
             }
         }
 
-        [HttpDelete("Apagar-Jogo-PS3")]
+        [HttpDelete("Apagar-Jogo-PS3/{id}")]
         public IActionResult ApagarJogo(int id)
         {
             try

@@ -59,7 +59,7 @@ namespace GameDB.Controllers
             }
         }
 
-        [HttpPut("Editar-Jogo-Ps4")]
+        [HttpPut("Editar-Jogo-Ps4/{id}")]
         public IActionResult EditarJogo(int id, Ps4 ps4)
         {
             try
@@ -80,7 +80,7 @@ namespace GameDB.Controllers
             }
         }
 
-        [HttpDelete("Apagar-jogo-Ps4")]
+        [HttpDelete("Apagar-jogo-Ps4/{id}")]
         public IActionResult ApagarJogo(int id)
         {
             try
@@ -101,7 +101,7 @@ namespace GameDB.Controllers
             }
         }
 
-        [HttpPatch("editar-parcialmente-jogo-ps4")]
+        [HttpPatch("editar-parcialmente-jogo-ps4/{id}")]
         public IActionResult EditarParcialmente(int id, [FromBody] JsonPatchDocument patch)
         {
             try

@@ -62,7 +62,7 @@ namespace GameDB.Controllers.Consoles
             }
         }
 
-        [HttpPut("Editar-Jogo-Xbox360")]
+        [HttpPut("Editar-Jogo-Xbox360/{id}")]
         public IActionResult EditarJogo(int id, [FromForm] Xbox360 x360)
         {
             try
@@ -83,7 +83,7 @@ namespace GameDB.Controllers.Consoles
             }
         }
 
-        [HttpDelete("Apagar-Jogo-Xbox360")]
+        [HttpDelete("Apagar-Jogo-Xbox360/{id}")]
         public IActionResult ApagarJogo(int id)
         {
             try
