@@ -40,6 +40,25 @@ namespace GameDB.Controllers
             return Ok(result);
         }
 
+        [HttpGet("buscar-jogo-por-id-ps4/{id}")]
+        public IActionResult BuscarPorID(int id)
+        {
+            try
+            {
+                var retrono = _service.ProcurarJogo(id);
+                if (retrono == null)
+                {
+                    return NotFound("Jogo não encontrado no Banco de dados");
+                }
+                return Ok(retrono);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest($"{ex.Message}");
+
+            }
+        }
+
         [HttpPut("Editar-Jogo-Ps4")]
         public IActionResult EditarJogo(int id, Ps4 ps4)
         {
@@ -82,7 +101,7 @@ namespace GameDB.Controllers
             }
         }
 
-        [HttpPatch("Editar-Jogo-Ps4-Parcialmente")]
+        [HttpPatch("editar-parcialmente-jogo-ps4")]
         public IActionResult EditarParcialmente(int id, [FromBody] JsonPatchDocument patch)
         {
             try

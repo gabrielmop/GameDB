@@ -36,11 +36,30 @@ namespace GameDB.Controllers.Consoles
 
         }
 
-        [HttpGet("Listar-Jogos-PS2")]
+        [HttpGet("Listar-jogos-PS2")]
         public IActionResult ListarJogos()
         {
             var result = _service.ListarJogo();
             return Ok(result);
+        }
+
+        [HttpGet("buscar-jogo-por-id-ps2/{id}")]
+        public IActionResult BuscarPorID(int id)
+        {
+            try
+            {
+                var retrono = _service.ProcurarJogo(id);
+                if (retrono == null)
+                {
+                    return NotFound("");
+                }
+                return Ok(retrono);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest($"{ex.Message}");
+
+            }
         }
 
         [HttpPut("Editar-Jogo-PS2")]
@@ -85,7 +104,7 @@ namespace GameDB.Controllers.Consoles
             }
         }
 
-        [HttpPatch("Editar-Jogo-Parcialmente/{id}")]
+        [HttpPatch("editar-parcialmente-jogo-ps2/{id}")]
         public IActionResult EditarParcialmente(int id, [FromBody] JsonPatchDocument patch)
         {
             try

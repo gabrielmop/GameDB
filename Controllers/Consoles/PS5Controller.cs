@@ -40,6 +40,25 @@ namespace GameDB.Controllers.Consoles
             return Ok(result);
         }
 
+        [HttpGet("buscar-jogo-por-id-ps5/{id}")]
+        public IActionResult BuscarPorID(int id)
+        {
+            try
+            {
+                var retrono = _service.ProcurarJogo(id);
+                if (retrono == null)
+                {
+                    return NotFound("Jogo não encontrado no Banco de dados");
+                }
+                return Ok(retrono);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest($"{ex.Message}");
+
+            }
+        }
+
         [HttpPut("Editar-Jogo-Ps5")]
         public IActionResult EditarJogo(int id, PS5 ps5)
         {
@@ -82,7 +101,7 @@ namespace GameDB.Controllers.Consoles
             }
         }
 
-        [HttpPatch("Editar-Jogo-Ps5-Parcialmente")]
+        [HttpPatch("editar-parcialmente-jogo-ps5")]
         public IActionResult EditarParcialmente(int id, [FromBody] JsonPatchDocument patch)
         {
             try

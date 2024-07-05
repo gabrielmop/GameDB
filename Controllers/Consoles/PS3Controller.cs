@@ -43,6 +43,25 @@ namespace GameDB.Controllers.Consoles
             return Ok(result);
         }
 
+        [HttpGet("buscar-jogo-por-id-ps3/{id}")]
+        public IActionResult BuscarPorID(int id)
+        {
+            try
+            {
+                var retrono = _service.ProcurarJogo(id);
+                if (retrono == null)
+                {
+                    return NotFound("Jogo não encontrado no Banco de dados");
+                }
+                return Ok(retrono);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest($"{ex.Message}");
+
+            }
+        }
+
         [HttpPut("Editar-Jogo-PS3")]
         public IActionResult EditarJogo(int id, [FromForm] Ps3 ps3)
         {
@@ -85,7 +104,7 @@ namespace GameDB.Controllers.Consoles
             }
         }
 
-        [HttpPatch("Editar-Jogo-Parcialmente/{id}")]
+        [HttpPatch("editar-parcialmente-jogo-ps3/{id}")]
         public IActionResult EditarParcialmente(int id, [FromBody] JsonPatchDocument patch)
         {
             try

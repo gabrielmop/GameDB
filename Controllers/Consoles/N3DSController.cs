@@ -31,7 +31,7 @@ namespace GameDB.Controllers
             }
             catch (Exception ex)
             {
-                LogService.RegistrarLog(DateTime.Now, 1, "Um erro foi encontrado", ex.Message);
+                LogService.RegistrarLog(DateTime.Now, 1, "Um erro foi encontrado ao adicionar esse jogo", ex.Message);
                 return BadRequest(ex.Message);
             }
         }
@@ -48,6 +48,25 @@ namespace GameDB.Controllers
             {
                 LogService.RegistrarLog(DateTime.Now, 1, "Um erro foi encontrado ao tentar listar os jogos de 3DS", ex.Message);
                 return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpGet("buscar-jogo-por-id-N3DS/{id}")]
+        public IActionResult BuscarPorID(int id)
+        {
+            try
+            {
+                var retrono = _service.ProcurarJogo(id);
+                if (retrono == null)
+                {
+                    return NotFound("Jogo não encontrado no banco de dados");
+                }
+                return Ok(retrono);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest($"{ex.Message}");
+
             }
         }
 
@@ -93,7 +112,7 @@ namespace GameDB.Controllers
             }
         }
 
-        [HttpPatch("Editar-Jogo-N3ds-Parcialmente")]
+        [HttpPatch("Editar-parcialmente-jogo-N3DS")]
         public IActionResult EditarParcialmente(int id, [FromBody] JsonPatchDocument patch)
         {
             try
