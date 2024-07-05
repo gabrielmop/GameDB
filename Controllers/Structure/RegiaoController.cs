@@ -49,6 +49,25 @@ namespace GameDB.Controllers
             }
         }
 
+        [HttpGet("Buscar-regiao-por-id/{id}")]
+        public IActionResult BuscarPorID(int id)
+        {
+            try
+            {
+                var retrono = Repositorio.ProcurarRegiao(id);
+                if (retrono == null)
+                {
+                    return NotFound();
+                }
+                return Ok(retrono);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest($"{ex.Message}");
+
+            }
+        }
+
         [HttpPut("Editar-Regiao/{id}")]
         public IActionResult EditarRegiao(int id, [FromForm] Regiao regiao)
         {
