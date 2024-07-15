@@ -34,14 +34,9 @@ namespace GameDB.Services.Consoles
             Repositorio.EditarJogo(ps3);
         }
 
-        public void EditarParcialmente(JsonPatchDocument<Ps3> patch, Ps3 ps3)
+        public void EdtiarParcialmente(string Tabela, string Coluna, string ValorColuna, string Busca, string BuscaValor)
         {
-            Repositorio.EditarParcialmente(patch, ps3);
-        }
-
-        public void EdtiarParcialmenteTeste(string Tabela, string Coluna, string ValorColuna, string Busca, string BuscaValor)
-        {
-           Repositorio.EdtiarParcialmenteTeste(Tabela, Coluna, ValorColuna, Busca, BuscaValor);
+           Repositorio.EdtiarParcialmente(Tabela, Coluna, ValorColuna, Busca, BuscaValor);
         }
 
         public List<Ps3Lista> ListarJogo()

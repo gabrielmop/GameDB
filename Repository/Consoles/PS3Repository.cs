@@ -36,16 +36,9 @@ namespace GameDB.Repository.Consoles
             DBC.SaveChanges();
         }
 
-        public void EditarParcialmente(JsonPatchDocument<Ps3> patch, Ps3 ps3)
-        {
-          
-            patch.ApplyTo(ps3);
-            DBC.Entry(ps3).State = EntityState.Modified;
-            DBC.SaveChanges();
-            
-        }
+        
 
-        public void EdtiarParcialmenteTeste(string Tabela, string Coluna, string ValorColuna, string Busca, string BuscaValor)
+        public void EdtiarParcialmente(string Tabela, string Coluna, string ValorColuna, string Busca, string BuscaValor)
         {
 
             var sql = $"UPDATE {Tabela} SET {Coluna} = @p2 WHERE {Busca} = @p4";
