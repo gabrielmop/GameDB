@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GameDB.Models.Structure;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
@@ -21,6 +22,12 @@ namespace GameDB.Models.Consoles
         public string Observacoes { get; set; }
         public bool? Ps4pro { get; set; }
         public int? EstadoId { get; set; }
+
+
+        public virtual Estado Estado { get; set; }
+        public virtual Genero Genero { get; set; }
+        public virtual Plataforma Plataforma { get; set; }
+        public virtual Regiao Regiao { get; set; }
 
     }
 

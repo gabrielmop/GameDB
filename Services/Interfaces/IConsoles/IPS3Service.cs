@@ -10,7 +10,8 @@ namespace GameDB.Services.Interfaces.Consoles
         public void ApagarJogo(Ps3 ps3);
         public Ps3 ProcurarJogo(int id);
         public List<Ps3Lista> ListarJogo();
-        public void EditarParcialmente(JsonPatchDocument patch, Ps3 ps3);
+        public void EditarParcialmente(JsonPatchDocument<Ps3> patch, Ps3 ps3);
+        public void EdtiarParcialmenteTeste(string Tabela, string Coluna, string ValorColuna, string Busca, string BuscaValor);
 
 
     }

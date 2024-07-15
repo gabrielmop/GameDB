@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GameDB.Models.Structure;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
@@ -22,9 +23,15 @@ namespace GameDB.Models.Consoles
         public bool? DualSense { get; set; }
         public int? EstadoID { get; set; }
 
+
+        public virtual Estado Estado { get; set; }
+        public virtual Genero Genero { get; set; }
+        public virtual Plataforma Plataforma { get; set; }
+        public virtual Regiao Regiao { get; set; }
+
     }
 
-    public partial class Ps5Lista
+    public partial class PS5Lista
     {
         [Key]
         public int GameId { get; set; }

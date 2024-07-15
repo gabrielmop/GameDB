@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using GameDB.Models.Structure;
+using System.ComponentModel.DataAnnotations;
 
 namespace GameDB.Models.Consoles
 {
@@ -18,6 +19,12 @@ namespace GameDB.Models.Consoles
         public string? Observacoes { get; set; }
         public bool? WiiMote { get; set; }
         public int EstadoID { get; set; }
+
+
+        public virtual Estado Estado { get; set; }
+        public virtual Genero Genero { get; set; }
+        public virtual Plataforma Plataforma { get; set; }
+        public virtual Regiao Regiao { get; set; }
     }
 
     public class WiiULista

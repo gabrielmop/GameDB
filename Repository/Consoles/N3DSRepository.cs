@@ -43,13 +43,13 @@ namespace GameDB.Repository.Consoles
 
         public List<N3DSLista> ListarJogo()
         {
-            var Lista = DBC.N3DSl.FromSqlRaw("execute dbo.Listar_Jogos_N3DS");
+            var Lista = DBC.N3DSL.FromSqlRaw("execute dbo.Listar_Jogos_N3DS");
             return Lista.ToList();
         }
 
         public N3DS ProcurarJogo(int id)
         {
-            return DBC.N3Ds.Find(id);
+            return DBC.N3DS.Find(id);
         }
     }
 }

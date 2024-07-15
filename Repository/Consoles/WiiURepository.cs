@@ -53,7 +53,7 @@ namespace GameDB.Repository.Consoles
 
         public WiiU ProcurarJogo(int id)
         {
-            return DBC.WiiU.Find(id);
+            return DBC.WiiUs.Find(id);
 
         }
     }

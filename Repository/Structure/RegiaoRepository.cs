@@ -16,7 +16,7 @@ namespace GameDB.Repository.Structure
 
         public void ApagarRegiao(Regiao regiao)
         {
-            DBC.Regioes.Remove(regiao);
+            DBC.Regiaos.Remove(regiao);
             DBC.SaveChanges();
         }
 
@@ -35,12 +35,12 @@ namespace GameDB.Repository.Structure
 
         public List<Regiao> ListarRegioes()
         {
-            return DBC.Regioes.ToList();
+            return DBC.Regiaos.ToList();
         }
 
         public Regiao ProcurarRegiao(int id)
         {
-            return DBC.Regioes.Find(id);
+            return DBC.Regiaos.Find(id);
         }
 
 

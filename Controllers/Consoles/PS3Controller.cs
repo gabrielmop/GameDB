@@ -3,6 +3,10 @@ using Microsoft.AspNetCore.Mvc;
 using GameDB.Models.Consoles;
 using GameDB.Services.Interfaces.Struture;
 using GameDB.Services.Interfaces.Consoles;
+using Azure.Core.Serialization;
+using Newtonsoft.Json;
+using System.Data.Entity.Core.Common.CommandTrees;
+using Microsoft.AspNetCore.Http;
 
 namespace GameDB.Controllers.Consoles
 {
@@ -27,6 +31,23 @@ namespace GameDB.Controllers.Consoles
                 _service.AdicionarJogo(ps3);
                 LogService.RegistrarLog(DateTime.Now, 2, $"O Jogo de PS3 {ps3.Nome} foi adicionado ao banco, custo de R${ps3.Preco}", "Nenhum erro encontrado");
                 return Ok($"O jogo {ps3.Nome} foi adicionado com sucesso!");
+            }
+            catch (Exception ex)
+            {
+                LogService.RegistrarLog(DateTime.Now, 1, "Um Erro foi encontrado", ex.Message);
+                return BadRequest(ex.Message);
+            }
+
+        }
+
+        [HttpPost("Editar-Jogo-PS3-Teste")]
+        public IActionResult EditarJogo(string Tabela, string Coluna, string ValorColuna, string Busca, string BuscaValor)
+        {
+            try
+            {
+                _service.EdtiarParcialmenteTeste(Tabela, Coluna, ValorColuna, Busca, BuscaValor);
+                LogService.RegistrarLog(DateTime.Now, 2, $"Um Jogo foi editado parcialmente no banco", "Nenhum erro encontrado");
+                return Ok($"Dados alterados com Sucesso!");
             }
             catch (Exception ex)
             {
@@ -105,12 +126,13 @@ namespace GameDB.Controllers.Consoles
         }
 
         [HttpPatch("editar-parcialmente-jogo-ps3/{id}")]
-        public IActionResult EditarParcialmente(int id, [FromBody] JsonPatchDocument patch)
+        public IActionResult EditarParcialmente(int id, [FromForm] JsonPatchDocument<Ps3> patch)
         {
             try
             {
                 if (patch == null)
                 {
+                    //var error = JsonSerializer.Deserialize<JsonPatchDocument>(patch);
                     return BadRequest("Nenhuma edição encontrada");
                 }
                 var busca = _service.ProcurarJogo(id);
@@ -118,11 +140,6 @@ namespace GameDB.Controllers.Consoles
                 {
                     return NotFound("Jogo não encontrado");
                 }
-                /* "operationType": 0,
-                 "path": "Insira a Coluna que voce vai alterar",
-                 "op": "o tipo de operação, geralmente é 'Replace'",
-                 "from": "não precisa se for Replace",
-                 "value": "O novo valor que precisa ser"*/
                 _service.EditarParcialmente(patch, busca);
                 LogService.RegistrarLog(DateTime.Now, 2, $"O Jogo de PS3 {busca.Nome} foi editado no banco", "Nenhum erro encontrado");
                 return Ok($"O jogo {busca.Nome} foi editado com sucesso!");

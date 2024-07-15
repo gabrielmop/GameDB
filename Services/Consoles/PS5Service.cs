@@ -36,7 +36,7 @@ namespace GameDB.Services.Consoles
             Repositorio.EditarParcialmente(patch, ps5);
         }
 
-        public List<Ps5Lista> ListarJogo()
+        public List<PS5Lista> ListarJogo()
         {
             var result = Repositorio.ListarJogo();
             return result;

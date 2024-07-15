@@ -44,7 +44,7 @@ namespace GameDB.Repository.Consoles
 
         public List<Xbox360Lista> ListarJogo()
         {
-            var Lista = DBC.X360l.FromSqlRaw("execute dbo.Listar_Jogos_Xbox360");
+            var Lista = DBC.Xbox360l.FromSqlRaw("execute dbo.Listar_Jogos_Xbox360");
             return Lista.ToList();
 
         }
@@ -53,7 +53,7 @@ namespace GameDB.Repository.Consoles
         public Xbox360 ProcurarJogo(int id)
         {
 
-            return DBC.Xbox360.Find(id);
+            return DBC.Xbox360s.Find(id);
         }
     }
 }

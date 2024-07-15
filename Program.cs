@@ -10,13 +10,14 @@ using GameDB.Services.Interfaces.Consoles;
 using GameDB.Services.Interfaces.Struture;
 using GameDB.Services.Structure;
 using GameDB.Services.Interfaces.IStruture;
+using Microsoft.AspNetCore.JsonPatch;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
+builder.Services.AddControllersWithViews();
 builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 

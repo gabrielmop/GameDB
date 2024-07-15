@@ -43,7 +43,7 @@ namespace GameDB.Repository.Consoles
             DBC.SaveChanges();
         }
 
-        public List<Ps5Lista> ListarJogo()
+        public List<PS5Lista> ListarJogo()
         {
             var Lista = DBC.Ps5l.FromSqlRaw("execute dbo.Listar_Jogos_PS5");
             return Lista.ToList();
@@ -52,7 +52,7 @@ namespace GameDB.Repository.Consoles
 
         public PS5 ProcurarJogo(int id)
         {
-            return DBC.Ps5.Find(id);
+            return DBC.Ps5s.Find(id);
         }
     }
 }

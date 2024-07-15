@@ -17,7 +17,7 @@ namespace GameDB.Repository.Structure
 
         public void ApagarEstado(Estado estado)
         {
-            DBC.Estado.Remove(estado);
+            DBC.Estados.Remove(estado);
             DBC.SaveChanges();
         }
 
@@ -29,12 +29,12 @@ namespace GameDB.Repository.Structure
 
         public List<Estado> ListarEstados()
         {
-            return DBC.Estado.ToList();
+            return DBC.Estados.ToList();
         }
 
         public Estado ProcurarEstado(int id)
         {
-            return DBC.Estado.Find(id);
+            return DBC.Estados.Find(id);
         }
 
         public Estado RegistrarEstado(Estado estado)
