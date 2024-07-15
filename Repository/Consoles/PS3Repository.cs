@@ -47,15 +47,13 @@ namespace GameDB.Repository.Consoles
 
         public void EdtiarParcialmenteTeste(string Tabela, string Coluna, string ValorColuna, string Busca, string BuscaValor)
         {
-            using (var context = new GameDBContext())
-            {
-                var param1 = new SqlParameter("@p0", Tabela);
-                var param2 = new SqlParameter("@p1", Coluna);
+
+            var sql = $"UPDATE {Tabela} SET {Coluna} = @p2 WHERE {Busca} = @p4";
+               
                 var param3 = new SqlParameter("@p2", ValorColuna);
-                var param4 = new SqlParameter("@p3", Busca);
                 var param5 = new SqlParameter("@p4", BuscaValor);
-                context.Database.ExecuteSqlRaw($"UPDATE PS3 SET @p1 = @p2 WHERE GameId = @p4", param1, param2, param3, param4, param5);
-            }
+                DBC.Database.ExecuteSqlRaw(sql, param3, param5);
+            
             
         }
 
