@@ -32,6 +32,12 @@ namespace GameDB.Repository.Consoles
 
         public void EditarJogo(Ps3 ps3)
         {
+            var existingEntity = DBC.Ps3s.Local.FirstOrDefault(e => e.GameId == ps3.GameId);
+            if (existingEntity != null)
+            {
+                DBC.Entry(existingEntity).State = EntityState.Detached;
+            }
+            DBC.Ps3s.Attach(ps3);
             DBC.Entry(ps3).State = EntityState.Modified;
             DBC.SaveChanges();
         }

@@ -177,21 +177,7 @@ public partial class GameDBContext : DbContext
             entity.Property(e => e.Preco).HasColumnType("decimal(5, 2)");
             entity.Property(e => e.Serial).HasMaxLength(15);
 
-            entity.HasOne(d => d.Estado).WithMany(p => p.ps3s)
-                .HasForeignKey(d => d.EstadoID)
-                .HasConstraintName("FK__PS3__EstadoID__503BEA1C");
-
-            entity.HasOne(d => d.Genero).WithMany(p => p.ps3s)
-                .HasForeignKey(d => d.GeneroId)
-                .HasConstraintName("FK__PS3__GeneroID__5165187F");
-
-            entity.HasOne(d => d.Plataforma).WithMany(p => p.ps3s)
-                .HasForeignKey(d => d.PlataformaId)
-                .HasConstraintName("FK__PS3__PlataformaI__5070F446");
-
-            entity.HasOne(d => d.Regiao).WithMany(p => p.ps3s)
-                .HasForeignKey(d => d.RegiaoId)
-                .HasConstraintName("FK__PS3__RegiaoId__4F7CD00D");
+           
         });
 
         modelBuilder.Entity<Ps4>(entity =>
@@ -211,21 +197,7 @@ public partial class GameDBContext : DbContext
             entity.Property(e => e.Ps4pro).HasColumnName("PS4Pro");
             entity.Property(e => e.Serial).HasMaxLength(25);
 
-            entity.HasOne(d => d.Estado).WithMany(p => p.ps4s)
-                .HasForeignKey(d => d.EstadoId)
-                .HasConstraintName("FK__PS4__EstadoID__51300E55");
-
-            entity.HasOne(d => d.Genero).WithMany(p => p.ps4s)
-                .HasForeignKey(d => d.GeneroId)
-                .HasConstraintName("FK__PS4__GeneroID__571DF1D5");
-
-            entity.HasOne(d => d.Plataforma).WithMany(p => p.ps4s)
-                .HasForeignKey(d => d.PlataformaId)
-                .HasConstraintName("FK__PS4__PlataformaI__5629CD9C");
-
-            entity.HasOne(d => d.Regiao).WithMany(p => p.ps4s)
-                .HasForeignKey(d => d.RegiaoId)
-                .HasConstraintName("FK__PS4__RegiaoId__5535A963");
+           
         });
 
         modelBuilder.Entity<PS5>(entity =>

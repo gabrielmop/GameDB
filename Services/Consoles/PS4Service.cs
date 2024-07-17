@@ -31,14 +31,14 @@ namespace GameDB.Services.Consoles
 
         }
 
-        public void EditarParcialmente(JsonPatchDocument patch, Ps4 ps4)
+        public void EdtiarParcialmente(string Tabela, string Coluna, string ValorColuna, string Busca, string BuscaValor)
         {
-            Repositorio.EditarParcialmente(patch, ps4);
+            Repositorio.EdtiarParcialmente(Tabela, Coluna, ValorColuna, Busca, BuscaValor);
         }
 
-        public List<Ps4Lista> ListarJogo(bool incluiPS5)
+        public List<Ps4Lista> ListarJogo()
         {
-            var result = Repositorio.ListarJogo(incluiPS5);
+            var result = Repositorio.ListarJogo();
             foreach (var item in result)
             {
                 if (item.Preco == "R$ 0,00")

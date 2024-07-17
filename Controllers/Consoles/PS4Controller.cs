@@ -6,6 +6,8 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace GameDB.Controllers
 {
+    [Route("api/[controller]")]
+    [ApiController]
     public class PS4Controller : ControllerBase
     {
         private readonly IPS4Service _service;
@@ -33,10 +35,10 @@ namespace GameDB.Controllers
             }
         }
 
-        [HttpGet("Listar-Jogo-Ps4")]
-        public IActionResult ListarJogos(bool incluiPS5)
+        [HttpGet("Listar-Jogos-Ps4")]
+        public IActionResult ListarJogos()
         {
-           var result = _service.ListarJogo(incluiPS5);
+           var result = _service.ListarJogo();
             return Ok(result);
         }
 
@@ -60,7 +62,7 @@ namespace GameDB.Controllers
         }
 
         [HttpPut("Editar-Jogo-Ps4/{id}")]
-        public IActionResult EditarJogo(int id, Ps4 ps4)
+        public IActionResult EditarJogo(int id, [FromForm]Ps4 ps4)
         {
             try
             {
@@ -101,31 +103,21 @@ namespace GameDB.Controllers
             }
         }
 
-        [HttpPatch("editar-parcialmente-jogo-ps4/{id}")]
-        public IActionResult EditarParcialmente(int id, [FromBody] JsonPatchDocument patch)
+        [HttpPost("editar-parcialmente-jogo-ps4")]
+        public IActionResult EditarParcialmente(string Tabela, string Coluna, string ValorColuna, string Busca, string BuscaValor)
         {
             try
             {
-                if (patch == null)
-                {
-                    return BadRequest("Nenhuma alteração encontrada");
-                }
-
-                var busca = _service.ProcurarJogo(id);
-                if (busca == null)
-                {
-                    return NotFound("Jogo não encontrado");
-                }
-
-                _service.EditarParcialmente(patch, busca);
-                LogService.RegistrarLog(DateTime.Now, 2, $"O Jogo de PS4 {busca.Nome} foi editado no banco", "Nenhum erro encontrado");
-                return Ok($"O jogo {busca.Nome} foi editado com sucesso!");
+                _service.EdtiarParcialmente(Tabela, Coluna, ValorColuna, Busca, BuscaValor);
+                LogService.RegistrarLog(DateTime.Now, 2, $"Um Jogo foi editado parcialmente no banco", "Nenhum erro encontrado");
+                return Ok($"Dados alterados com Sucesso!");
             }
             catch (Exception ex)
             {
-                LogService.RegistrarLog(DateTime.Now, 1, "Um erro foi encontrado", ex.Message);
+                LogService.RegistrarLog(DateTime.Now, 1, "Um Erro foi encontrado", ex.Message);
                 return BadRequest(ex.Message);
             }
+
         }
 
 

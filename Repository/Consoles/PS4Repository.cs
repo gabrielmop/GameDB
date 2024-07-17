@@ -1,9 +1,8 @@
 ﻿using GameDB.DataContext;
 using GameDB.Models.Consoles;
 using GameDB.Repository.Interface.Consoles;
-using Microsoft.AspNetCore.JsonPatch;
+using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
-using System.Collections.Generic;
 
 namespace GameDB.Repository.Consoles
 {
@@ -32,31 +31,34 @@ namespace GameDB.Repository.Consoles
 
         public void EditarJogo(Ps4 ps4)
         {
-            DBC.Entry(ps4).State = EntityState.Modified;
-            DBC.SaveChanges();
-
-        }
-
-        public void EditarParcialmente(JsonPatchDocument patch, Ps4 ps4)
-        {
-            patch.ApplyTo(ps4);
-            DBC.Entry(ps4).State = EntityState.Modified;
-            DBC.SaveChanges();
-        }
-
-        public List<Ps4Lista> ListarJogo(bool incluiPS5)
-        {
-            
-            if (incluiPS5 == true)
+            var existingEntity = DBC.Ps4s.Local.FirstOrDefault(e => e.GameId == ps4.GameId);
+            if (existingEntity != null)
             {
-                var Lista = DBC.Ps4l.FromSqlRaw("execute Listar_Jogos_PS4_E_PS5");
-                return Lista.ToList();
+                DBC.Entry(existingEntity).State = EntityState.Detached;
             }
-            else
-            {
+            DBC.Entry(ps4).State = EntityState.Modified;
+            DBC.SaveChanges();
+
+        }
+
+        public void EdtiarParcialmente(string Tabela, string Coluna, string ValorColuna, string Busca, string BuscaValor)
+        {
+
+            var sql = $"UPDATE {Tabela} SET {Coluna} = @p2 WHERE {Busca} = @p4";
+
+            var param3 = new SqlParameter("@p2", ValorColuna);
+            var param5 = new SqlParameter("@p4", BuscaValor);
+            DBC.Database.ExecuteSqlRaw(sql, param3, param5);
+
+
+        }
+
+        public List<Ps4Lista> ListarJogo()
+        {
+           
+                
                var Lista = DBC.Ps4l.FromSqlRaw("execute dbo.Listar_Jogos_PS4");
-               return Lista.ToList();
-            }           
+               return Lista.ToList();          
            
 
         }

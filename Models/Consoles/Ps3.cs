@@ -19,12 +19,7 @@ namespace GameDB.Models.Consoles
         public string? Observacoes { get; set; }
         public bool? Instalacao { get; set; }
         public int EstadoID { get; set; }
-
-
-        public virtual Estado Estado { get; set; }
-        public virtual Genero Genero { get; set; }
-        public virtual Plataforma Plataforma { get; set; }
-        public virtual Regiao Regiao { get; set; }
+   
     }
 
     public class Ps3Lista

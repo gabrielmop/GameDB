@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Diagnostics.CodeAnalysis;
 
 namespace GameDB.Models.Consoles
 {
@@ -24,11 +25,6 @@ namespace GameDB.Models.Consoles
         public int? EstadoId { get; set; }
 
 
-        public virtual Estado Estado { get; set; }
-        public virtual Genero Genero { get; set; }
-        public virtual Plataforma Plataforma { get; set; }
-        public virtual Regiao Regiao { get; set; }
-
     }
 
     public partial class Ps4Lista
@@ -46,7 +42,7 @@ namespace GameDB.Models.Consoles
         public string? Aquisicao { get; set; }
         public string? LocalAdq { get; set; }
         public string? Observacoes { get; set; }
-        public string? Extras { get; set; }
+        public string? Ps4Pro {  get; set; }
         public string? Estado { get; set; }
 
     }

@@ -6,6 +6,8 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace GameDB.Controllers.Consoles
 {
+    [Route("api/[controller]")]
+    [ApiController]
     public class PS5Controller : ControllerBase
     {
         private readonly IPS5Service _service;
