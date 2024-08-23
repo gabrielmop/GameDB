@@ -36,6 +36,7 @@ namespace GameDB.Repository.Consoles
             {
                 DBC.Entry(existingEntity).State = EntityState.Detached;
             }
+            DBC.Ps4s.Attach(ps4);
             DBC.Entry(ps4).State = EntityState.Modified;
             DBC.SaveChanges();
 
