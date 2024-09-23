@@ -1,5 +1,4 @@
-﻿using GameDB.Models.Structure;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace GameDB.Models.Consoles
 {

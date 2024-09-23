@@ -5,7 +5,9 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace GameDB.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/Structure/[controller]")]
+    [ApiExplorerSettings(GroupName = "v2")]
+    [ApiVersion("2.0")]
     [ApiController]
     public class RegiaoController : ControllerBase
     {

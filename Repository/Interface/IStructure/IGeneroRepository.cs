@@ -1,6 +1,4 @@
 ﻿using GameDB.Models.Structure;
-using Microsoft.AspNetCore.JsonPatch;
-using Microsoft.AspNetCore.Mvc;
 
 namespace GameDB.Repository.Interface.Structure
 {

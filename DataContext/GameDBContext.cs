@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using GameDB.Models.Consoles;
+﻿using GameDB.Models.Consoles;
 using GameDB.Models.Structure;
 using Microsoft.EntityFrameworkCore;
 
@@ -17,17 +15,18 @@ public partial class GameDBContext : DbContext
     {
     }
 
+    //dbset das structures
     public virtual DbSet<Estado> Estados { get; set; }
     public virtual DbSet<Genero> Generos { get; set; }
     public virtual DbSet<Logs> Logs { get; set; }
     public virtual DbSet<Plataforma> Plataformas { get; set; }
+    public virtual DbSet<Regioes> Regiaos { get; set; }
+    public virtual DbSet<Publicante> Publis { get; set; }
+
+    //dbset dos consoles
     public virtual DbSet<Ps3> Ps3s { get; set; }
     public virtual DbSet<Ps3Lista> Ps3l { get; set; }
-    public virtual DbSet<Ps4> Ps4s { get; set; }
-    public virtual DbSet<Ps4Lista> Ps4l { get; set; }
-    public virtual DbSet<Regioes> Regiaos { get; set; }
-    public virtual DbSet<WiiU> WiiUs { get; set; } //change
-    public virtual DbSet<WiiULista> WiiUl { get; set; } //change
+  
 
 
 
@@ -48,6 +47,16 @@ public partial class GameDBContext : DbContext
             entity.Property(e => e.EstadoID).HasColumnName("estadoID");
             entity.Property(e => e.EstadoNome)
                 .HasMaxLength(20)
+                .IsUnicode(false);
+        });
+
+        modelBuilder.Entity<Publicante>(entity =>
+        {
+           entity.ToTable("Publicante");
+
+            entity.Property(e => e.PubliID).HasColumnName("PubliID");
+            entity.Property(e => e.Publi)
+                .HasMaxLength(255)
                 .IsUnicode(false);
         });
 

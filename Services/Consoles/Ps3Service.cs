@@ -1,10 +1,7 @@
 ﻿using GameDB.Models.Consoles;
 using GameDB.Repository.Interface.Consoles;
 using GameDB.Services.Interfaces.Consoles;
-using Microsoft.AspNetCore.JsonPatch;
-using System.Linq;
-using System.Web.Mvc;
-using System.Xml;
+
 
 namespace GameDB.Services.Consoles
 {

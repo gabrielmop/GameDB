@@ -9,25 +9,25 @@ namespace GameDB.Controllers
     [ApiExplorerSettings(GroupName = "v2")]
     [ApiVersion("2.0")]
     [ApiController]
-    public class GeneroController : ControllerBase
+    public class PublicanteController : ControllerBase
     {
-        private readonly IGeneroService service;
+        private readonly IPublicanteService service;
         private readonly IlogService LogService;
 
-        public GeneroController(IGeneroService _service, IlogService _Log)
+        public PublicanteController(IPublicanteService _service, IlogService _Log)
         {
             service = _service;
             LogService = _Log;
         }
 
-        [HttpPost("Cadastrar-Novo-Genero")]
-        public IActionResult CadastrarGenero([FromForm] Genero genero)
+        [HttpPost("Cadastrar-Publicante")]
+        public IActionResult CadastrarPublicante([FromForm] Publicante Publicante)
         {
             try
             {
-                var result = service.RegistrarGenero(genero);
-                LogService.RegistrarLog(DateTime.Now, 2, $"O genero {genero.GeneroNome} Foi registrado no Banco", "Nenhum erro encontrado");
-                return Ok($"O genero {genero.GeneroNome} Foi adicionado com sucesso");
+                var result = service.RegistrarPublicante(Publicante);
+                LogService.RegistrarLog(DateTime.Now, 2, $"O Publicante {Publicante.Publi} Foi registrado no Banco", "Nenhum erro encontrado");
+                return Ok($"O genero {Publicante.Publi} Foi adicionado com sucesso");
             }
             catch (Exception ex)
             {
@@ -36,12 +36,12 @@ namespace GameDB.Controllers
             }
         }
 
-        [HttpGet("Listar-Generos")]
-        public IActionResult ListarGeneros()
+        [HttpGet("Listar-Publicantes")]
+        public IActionResult ListarPublicante()
         {
             try
             {
-                var result = service.ListarGeneros();
+                var result = service.ListarPublicante();
                 return Ok(result);
             }
             catch (Exception ex)
@@ -51,12 +51,12 @@ namespace GameDB.Controllers
             }
         }
 
-        [HttpGet("Procurar-Genero-Por-Id/{id}")]
-        public IActionResult BuscarGeneroPorId(int id)
+        [HttpGet("Procurar-Publicante-Por-Id/{id}")]
+        public IActionResult ProcurarPublicantePorId(int id)
         {
             try
             {
-                var retrono = service.ProcurarGenero(id);
+                var retrono = service.ProcurarPublicante(id);
                 if (retrono == null)
                 {
                     return NotFound();
@@ -70,19 +70,19 @@ namespace GameDB.Controllers
             }
         }
 
-        [HttpPut("Editar-Genero/{id}")]
-        public IActionResult AlterarGenero(int id, [FromForm] Genero genero)
+        [HttpPut("Editar-Publicante/{id}")]
+        public IActionResult AlterarPublicante(int id, [FromForm] Publicante Publicante)
         {
             try
             {
-                var busca = service.ProcurarGenero(id);
+                var busca = service.ProcurarPublicante(id);
                 if (busca == null)
                 {
                     return NotFound("Genero não encontrado");
                 }
-                service.EditarGenero(genero);
-                LogService.RegistrarLog(DateTime.Now, 2, $"O genero {busca.GeneroNome} Foi Alterado para {genero.GeneroNome} no Banco", "Nenhum erro encontrado");
-                return Ok($"O genero {busca.GeneroNome} Foi alterado para {genero.GeneroNome} com sucesso!");
+                service.EditarPublicante(Publicante);
+                LogService.RegistrarLog(DateTime.Now, 2, $"O genero {busca.Publi} Foi Alterado para {Publicante.Publi} no Banco", "Nenhum erro encontrado");
+                return Ok($"O genero {busca.Publi} Foi alterado para {Publicante.Publi} com sucesso!");
             }
             catch (Exception ex)
             {
@@ -93,20 +93,20 @@ namespace GameDB.Controllers
         }
 
 
-        [HttpDelete("Apagar-Genero/{id}")]
-        public IActionResult ApagarGenero(int id)
+        [HttpDelete("Apagar-Publicante/{id}")]
+        public IActionResult ApagarPublicante(int id)
         {
             try
             {
-                var busca = service.ProcurarGenero(id);
+                var busca = service.ProcurarPublicante(id);
                 if (busca == null)
                 {
                     return NotFound();
                 }
 
-                service.ApagarGenero(busca);
-                LogService.RegistrarLog(DateTime.Now, 2, $"O genero {busca.GeneroNome} Foi apagado do Banco", "Nenhum erro encontrado");
-                return Ok($"O genero {busca.GeneroNome} Foi apagado com sucesso!");
+                service.ApagarPublicante(busca);
+                LogService.RegistrarLog(DateTime.Now, 2, $"O genero {busca.Publi} Foi apagado do Banco", "Nenhum erro encontrado");
+                return Ok($"O genero {busca.Publi} Foi apagado com sucesso!");
 
             }
             catch (Exception ex)

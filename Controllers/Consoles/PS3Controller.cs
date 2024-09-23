@@ -5,7 +5,9 @@ using GameDB.Services.Interfaces.Consoles;
 
 namespace GameDB.Controllers.Consoles
 {
-    [Route("api/[controller]")]
+    [Route("api/Consoles/[controller]")]
+    [ApiExplorerSettings(GroupName = "v1")]
+    [ApiVersion("1.0")]
     [ApiController]
     public class PS3Controller : ControllerBase
     {

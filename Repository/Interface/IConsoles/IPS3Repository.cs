@@ -1,6 +1,5 @@
 ﻿using GameDB.Models.Consoles;
-using Microsoft.AspNetCore.JsonPatch;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
+
 
 namespace GameDB.Repository.Interface.Consoles
 {

@@ -5,12 +5,12 @@ using GameDB.Repository.Interface.Structure;
 using GameDB.Repository.Structure;
 using GameDB.Services.Interface.Structure;
 using GameDB.Services.Consoles;
-using GameDB.Services.Interfaces.Console;
 using GameDB.Services.Interfaces.Consoles;
 using GameDB.Services.Interfaces.Struture;
 using GameDB.Services.Structure;
 using GameDB.Services.Interfaces.IStruture;
-using Microsoft.AspNetCore.JsonPatch;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -19,7 +19,32 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+builder.Services.AddSwaggerGen(c =>
+    {
+    // Adiciona múltiplas definições (versões ou esquemas)
+    c.SwaggerDoc("v1", new OpenApiInfo
+    {
+        Version = "v1",
+        Title = "Consoles",
+        Description = "Controllers Dos Consoles"
+    });
+
+    c.SwaggerDoc("v2", new OpenApiInfo
+    {
+        Version = "v2",
+        Title = "Structure",
+        Description = "Controllers das Structures"
+    });
+
+        // Configuração para filtrar por versão
+        c.DocInclusionPredicate((version, apiDescription) =>
+        {
+            var groupName = apiDescription.GroupName;
+            return groupName != null && groupName == version;
+        });
+    });
+
+
 
 //Construtor das Structures
 builder.Services.AddTransient<GameDBContext, GameDBContext>();
@@ -33,6 +58,8 @@ builder.Services.AddTransient<IlogRepository, LogRepository>();
 builder.Services.AddTransient<IlogService, LogService>();
 builder.Services.AddTransient<IEstadoRepository, EstadoRepository>();
 builder.Services.AddTransient<IEstadoServices, EstadoService>();
+builder.Services.AddTransient<IPublicanteRepository, PublicanteRepository>();
+builder.Services.AddTransient<IPublicanteService, PublicanteService>();
 
 //Construtor dos Consoles
 
@@ -48,7 +75,11 @@ var app = builder.Build();
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
-    app.UseSwaggerUI();
+    app.UseSwaggerUI(c =>
+    {
+        c.SwaggerEndpoint("/swagger/v1/swagger.json", "Consoles");
+        c.SwaggerEndpoint("/swagger/v2/swagger.json", "Structure");
+    });
 }
 
 app.UseHttpsRedirection();

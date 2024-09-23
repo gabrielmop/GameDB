@@ -1,5 +1,4 @@
 ﻿using GameDB.Models.Consoles;
-using Microsoft.AspNetCore.JsonPatch;
 
 namespace GameDB.Services.Interfaces.Consoles
 {
