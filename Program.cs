@@ -35,20 +35,9 @@ builder.Services.AddTransient<IEstadoRepository, EstadoRepository>();
 builder.Services.AddTransient<IEstadoServices, EstadoService>();
 
 //Construtor dos Consoles
-builder.Services.AddTransient<IXbox360Repository, Xbox360Repository>();
-builder.Services.AddTransient<IXbox360Service, Xbox360Serivce>();
-builder.Services.AddTransient<IN3DSRepository, N3DSRepository>();
-builder.Services.AddTransient<IN3DSService, N3DSService>();
-builder.Services.AddTransient<IWiiURepository, WiiURepository>();
-builder.Services.AddTransient<IWiiUService, WiiUSerivce>();
-builder.Services.AddTransient<IPs2Repository, Ps2Repository>();
-builder.Services.AddTransient<IPS2Service, Ps2Serivce>();
+
 builder.Services.AddTransient<IPs3Repository, Ps3Repository>();
 builder.Services.AddTransient<IPS3Service, Ps3Serivce>();
-builder.Services.AddTransient<IPS4Repository, PS4Repository>();
-builder.Services.AddTransient<IPS4Service, PS4Service>();
-builder.Services.AddTransient<IPS5Repository, PS5Repository>();
-builder.Services.AddTransient<IPS5Service, PS5Service>();
 
 
 

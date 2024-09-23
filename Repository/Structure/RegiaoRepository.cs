@@ -14,31 +14,31 @@ namespace GameDB.Repository.Structure
             DBC = _DBC;
         }
 
-        public void ApagarRegiao(Regiao regiao)
+        public void ApagarRegiao(Regioes regiao)
         {
             DBC.Regiaos.Remove(regiao);
             DBC.SaveChanges();
         }
 
-        public Regiao CadastrarRegiao(Regiao regiao)
+        public Regioes CadastrarRegiao(Regioes regiao)
         {
             DBC.Add(regiao);
             DBC.SaveChanges();
             return regiao;
         }
 
-        public void EdtiarRegiao(Regiao regiao)
+        public void EdtiarRegiao(Regioes regiao)
         {
             DBC.Entry(regiao).State = EntityState.Modified;
             DBC.SaveChanges();
         }
 
-        public List<Regiao> ListarRegioes()
+        public List<Regioes> ListarRegioes()
         {
             return DBC.Regiaos.ToList();
         }
 
-        public Regiao ProcurarRegiao(int id)
+        public Regioes ProcurarRegiao(int id)
         {
             return DBC.Regiaos.Find(id);
         }

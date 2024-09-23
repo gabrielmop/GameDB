@@ -19,13 +19,13 @@ namespace GameDB.Controllers
         }
 
         [HttpPost("Cadastrar-Regiao")]
-        public IActionResult CadastrarRegiao([FromForm] Regiao regiao)
+        public IActionResult CadastrarRegiao([FromForm] Regioes regiao)
         {
             try
             {
                 var result = Repositorio.CadastrarRegiao(regiao);
-                LogService.RegistrarLog(DateTime.Now, 2, $"A região {regiao.RegiaoNome} foi Adicionada ao banco", "Nenhum erro encontrado");
-                return Ok($"A Região {regiao.RegiaoNome} foi adicionada com sucesso!");
+                LogService.RegistrarLog(DateTime.Now, 2, $"A região {regiao.Regiao}(Sigla {regiao.Sigla} foi Adicionada ao banco", "Nenhum erro encontrado");
+                return Ok($"A Região {regiao.Regiao} foi adicionada com sucesso!");
             }
             catch (Exception ex)
             {
@@ -69,7 +69,7 @@ namespace GameDB.Controllers
         }
 
         [HttpPut("Editar-Regiao/{id}")]
-        public IActionResult EditarRegiao(int id, [FromForm] Regiao regiao)
+        public IActionResult EditarRegiao(int id, [FromForm] Regioes regiao)
         {
             try
             {
@@ -79,8 +79,8 @@ namespace GameDB.Controllers
                     return NotFound("Região não encontrada");
                 }
                 Repositorio.EdtiarRegiao(regiao);
-                LogService.RegistrarLog(DateTime.Now, 2, $"A região {result.RegiaoNome} foi editada para {regiao.RegiaoNome}", "Nenhum erro encontrado");
-                return Ok($"A Região {result.RegiaoNome} foi alterada para {regiao.RegiaoNome} com sucesso");
+                LogService.RegistrarLog(DateTime.Now, 2, $"A região {result.Regiao} foi editada para {regiao.Regiao}", "Nenhum erro encontrado");
+                return Ok($"A Região {result.Regiao} foi alterada para {regiao.Regiao} com sucesso");
             }
             catch (Exception ex)
             {
@@ -100,8 +100,8 @@ namespace GameDB.Controllers
                     return NotFound("Região não encontrada, tente novamente");
                 }
                 Repositorio.ApagarRegiao(busca);
-                LogService.RegistrarLog(DateTime.Now, 2, $"A região {busca.RegiaoNome} foi Apagada do banco", "Nenhum erro encontrado");
-                return Ok($"A Região {busca.RegiaoNome} foi apagada com sucesso!");
+                LogService.RegistrarLog(DateTime.Now, 2, $"A região {busca.Regiao} foi Apagada do banco", "Nenhum erro encontrado");
+                return Ok($"A Região {busca.Regiao} foi apagada com sucesso!");
             }
             catch (Exception ex)
             {

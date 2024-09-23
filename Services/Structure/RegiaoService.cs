@@ -13,29 +13,29 @@ namespace GameDB.Services.Structure
             repositorio = _repositorio;
         }
 
-        public void ApagarRegiao(Regiao regiao)
+        public void ApagarRegiao(Regioes regiao)
         {
             repositorio.ApagarRegiao(regiao);
         }
 
-        public Regiao CadastrarRegiao(Regiao regiao)
+        public Regioes CadastrarRegiao(Regioes regiao)
         {
             repositorio.CadastrarRegiao(regiao);
             return regiao;
         }
 
-        public void EdtiarRegiao(Regiao regiao)
+        public void EdtiarRegiao(Regioes regiao)
         {
             repositorio.EdtiarRegiao(regiao);
         }
 
-        public List<Regiao> ListarRegioes()
+        public List<Regioes> ListarRegioes()
         {
             var lista = repositorio.ListarRegioes();
             return lista;
         }
 
-        public Regiao ProcurarRegiao(int id)
+        public Regioes ProcurarRegiao(int id)
         {
             var busca = repositorio.ProcurarRegiao(id);
             return busca;
