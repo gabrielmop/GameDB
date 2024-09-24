@@ -22,7 +22,7 @@ namespace GameDB.Repository.Structure
             DBC.SaveChanges();
         }
 
-        public void EditarPublicante(Publicante Publicante)
+        public void AlterarPublicante(Publicante Publicante)
         {
             var existingEntity = DBC.Publis.Local.FirstOrDefault(e => e.PubliID == Publicante.PubliID);
             if (existingEntity != null)
@@ -34,19 +34,19 @@ namespace GameDB.Repository.Structure
         }
 
 
-        public List<Publicante> ListarPublicante()
+        public List<Publicante> ListarPublicantes()
         {
             return DBC.Publis.ToList();
         }
 
-        public Publicante ProcurarPublicante(int id)
+        public Publicante BuscarPublicante(int id)
         {
             //Expressão lambda:
             // return DBC.Genero.Where(s => s.id == id).FirstOrDefault();
             return DBC.Publis.Find(id);
         }
 
-        public Publicante RegistrarPublicante(Publicante Publicante)
+        public Publicante CadastrarPublicante(Publicante Publicante)
         {
             DBC.Add(Publicante);
             DBC.SaveChanges();

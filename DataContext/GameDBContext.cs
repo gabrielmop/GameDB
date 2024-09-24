@@ -22,6 +22,7 @@ public partial class GameDBContext : DbContext
     public virtual DbSet<Plataforma> Plataformas { get; set; }
     public virtual DbSet<Regioes> Regiaos { get; set; }
     public virtual DbSet<Publicante> Publis { get; set; }
+    public virtual DbSet<Desenvolvedora> Devs { get; set; }
 
     //dbset dos consoles
     public virtual DbSet<Ps3> Ps3s { get; set; }
@@ -55,7 +56,17 @@ public partial class GameDBContext : DbContext
            entity.ToTable("Publicante");
 
             entity.Property(e => e.PubliID).HasColumnName("PubliID");
-            entity.Property(e => e.Publi)
+            entity.Property(e => e.PubliNome)
+                .HasMaxLength(255)
+                .IsUnicode(false);
+        });
+
+        modelBuilder.Entity<Desenvolvedora>(entity =>
+        {
+           entity.ToTable("Desenvolvedora");
+
+            entity.Property(e => e.DevID).HasColumnName("DevID");
+            entity.Property(e => e.DevNome)
                 .HasMaxLength(255)
                 .IsUnicode(false);
         });

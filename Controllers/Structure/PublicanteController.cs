@@ -25,9 +25,9 @@ namespace GameDB.Controllers
         {
             try
             {
-                var result = service.RegistrarPublicante(Publicante);
-                LogService.RegistrarLog(DateTime.Now, 2, $"O Publicante {Publicante.Publi} Foi registrado no Banco", "Nenhum erro encontrado");
-                return Ok($"O genero {Publicante.Publi} Foi adicionado com sucesso");
+                var result = service.CadastrarPublicante(Publicante);
+                LogService.RegistrarLog(DateTime.Now, 2, $"A publicante {Publicante.PubliNome} foi registrada no Banco", "Nenhum erro encontrado");
+                return Ok($"A publicante {Publicante.PubliNome} Foi adicionado com sucesso");
             }
             catch (Exception ex)
             {
@@ -37,11 +37,11 @@ namespace GameDB.Controllers
         }
 
         [HttpGet("Listar-Publicantes")]
-        public IActionResult ListarPublicante()
+        public IActionResult ListarPublicantes()
         {
             try
             {
-                var result = service.ListarPublicante();
+                var result = service.ListarPublicantes();
                 return Ok(result);
             }
             catch (Exception ex)
@@ -51,15 +51,15 @@ namespace GameDB.Controllers
             }
         }
 
-        [HttpGet("Procurar-Publicante-Por-Id/{id}")]
-        public IActionResult ProcurarPublicantePorId(int id)
+        [HttpGet("Buscar-Publicante/{id}")]
+        public IActionResult BuscarPublicantePorId(int id)
         {
             try
             {
-                var retrono = service.ProcurarPublicante(id);
+                var retrono = service.BuscarPublicante(id);
                 if (retrono == null)
                 {
-                    return NotFound();
+                    return NotFound("Publicante não encontrada");
                 }
                 return Ok(retrono);
             }
@@ -70,19 +70,19 @@ namespace GameDB.Controllers
             }
         }
 
-        [HttpPut("Editar-Publicante/{id}")]
+        [HttpPut("Alterar-Publicante/{id}")]
         public IActionResult AlterarPublicante(int id, [FromForm] Publicante Publicante)
         {
             try
             {
-                var busca = service.ProcurarPublicante(id);
+                var busca = service.BuscarPublicante(id);
                 if (busca == null)
                 {
-                    return NotFound("Genero não encontrado");
+                    return NotFound("Publicante não encontrada");
                 }
-                service.EditarPublicante(Publicante);
-                LogService.RegistrarLog(DateTime.Now, 2, $"O genero {busca.Publi} Foi Alterado para {Publicante.Publi} no Banco", "Nenhum erro encontrado");
-                return Ok($"O genero {busca.Publi} Foi alterado para {Publicante.Publi} com sucesso!");
+                service.AlterarPublicante(Publicante);
+                LogService.RegistrarLog(DateTime.Now, 2, $"A publicante {busca.PubliNome} foi alterado para {Publicante.PubliNome} no Banco", "Nenhum erro encontrado");
+                return Ok($"A publicante {busca.PubliNome} foi alterada para {Publicante.PubliNome} com sucesso!");
             }
             catch (Exception ex)
             {
@@ -98,15 +98,15 @@ namespace GameDB.Controllers
         {
             try
             {
-                var busca = service.ProcurarPublicante(id);
+                var busca = service.BuscarPublicante(id);
                 if (busca == null)
                 {
-                    return NotFound();
+                    return NotFound("Publicante não encontrada ou já apagada");
                 }
 
                 service.ApagarPublicante(busca);
-                LogService.RegistrarLog(DateTime.Now, 2, $"O genero {busca.Publi} Foi apagado do Banco", "Nenhum erro encontrado");
-                return Ok($"O genero {busca.Publi} Foi apagado com sucesso!");
+                LogService.RegistrarLog(DateTime.Now, 2, $"A publicante {busca.PubliNome} foi apagada do Banco", "Nenhum erro encontrado");
+                return Ok($"A publicante {busca.PubliNome} Foi apagado com sucesso!");
 
             }
             catch (Exception ex)

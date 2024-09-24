@@ -18,26 +18,26 @@ namespace GameDB.Services.Structure
             Repositorio.ApagarPublicante(Publicante);
         }
 
-        public void EditarPublicante(Publicante Publicante)
+        public void AlterarPublicante(Publicante Publicante)
         {
-            Repositorio.EditarPublicante(Publicante);
+            Repositorio.AlterarPublicante(Publicante);
         }
 
-        public List<Publicante> ListarPublicante()
+        public List<Publicante> ListarPublicantes()
         {
-            var resultado = Repositorio.ListarPublicante();
+            var resultado = Repositorio.ListarPublicantes();
             return resultado;
         }
 
-        public Publicante ProcurarPublicante(int id)
+        public Publicante BuscarPublicante(int id)
         {
-            var busca = Repositorio.ProcurarPublicante(id);
+            var busca = Repositorio.BuscarPublicante(id);
             return busca;
         }
 
-        public Publicante RegistrarPublicante(Publicante Publicante)
+        public Publicante CadastrarPublicante(Publicante Publicante)
         {
-            Repositorio.RegistrarPublicante(Publicante);
+            Repositorio.CadastrarPublicante(Publicante);
             return Publicante;
         }
     }

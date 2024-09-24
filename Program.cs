@@ -11,10 +11,10 @@ using GameDB.Services.Structure;
 using GameDB.Services.Interfaces.IStruture;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.OpenApi.Models;
+using GameDB.Models.Structure;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
 
 builder.Services.AddControllersWithViews();
 builder.Services.AddControllers();
@@ -60,6 +60,8 @@ builder.Services.AddTransient<IEstadoRepository, EstadoRepository>();
 builder.Services.AddTransient<IEstadoServices, EstadoService>();
 builder.Services.AddTransient<IPublicanteRepository, PublicanteRepository>();
 builder.Services.AddTransient<IPublicanteService, PublicanteService>();
+builder.Services.AddTransient<IDesenvolvedoraRepository, DesenvolvedoraRepository>();
+builder.Services.AddTransient<IDesenvolvedoraService, DesenvolvedoraService>();
 
 //Construtor dos Consoles
 

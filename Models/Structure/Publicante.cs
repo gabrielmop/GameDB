@@ -6,9 +6,6 @@ namespace GameDB.Models.Structure
     {
         [Key]
         public int PubliID { get; set; }
-        public string Publi { get; set; }
-
-
-        
+        public string PubliNome { get; set; }        
     }
 }
