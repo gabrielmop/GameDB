@@ -21,13 +21,13 @@ namespace GameDB.Controllers
         }
 
         [HttpPost("Cadastrar-Regiao")]
-        public IActionResult CadastrarRegiao([FromForm] Regioes regiao)
+        public IActionResult CadastrarRegiao([FromForm] Regiao regiao)
         {
             try
             {
                 var result = Repositorio.CadastrarRegiao(regiao);
-                LogService.RegistrarLog(DateTime.Now, 2, $"A região {regiao.Regiao}(Sigla {regiao.Sigla} foi Adicionada ao banco", "Nenhum erro encontrado");
-                return Ok($"A Região {regiao.Regiao} foi adicionada com sucesso!");
+                LogService.RegistrarLog(DateTime.Now, 2, $"A região {regiao.RegiaoNome} (Sigla {regiao.Sigla}) foi cadastrada no banco", "Nenhum erro encontrado");
+                return Ok($"A Região {regiao.RegiaoNome} foi cadastrada com sucesso!");
             }
             catch (Exception ex)
             {
@@ -51,15 +51,15 @@ namespace GameDB.Controllers
             }
         }
 
-        [HttpGet("Buscar-regiao-por-id/{id}")]
-        public IActionResult BuscarPorID(int id)
+        [HttpGet("Buscar-regiao/{id}")]
+        public IActionResult BuscarRegiao(int id)
         {
             try
             {
-                var retrono = Repositorio.ProcurarRegiao(id);
+                var retrono = Repositorio.BuscarRegiao(id);
                 if (retrono == null)
                 {
-                    return NotFound();
+                    return NotFound("Região não encontrada");
                 }
                 return Ok(retrono);
             }
@@ -70,19 +70,19 @@ namespace GameDB.Controllers
             }
         }
 
-        [HttpPut("Editar-Regiao/{id}")]
-        public IActionResult EditarRegiao(int id, [FromForm] Regioes regiao)
+        [HttpPut("Alterar-Regiao/{id}")]
+        public IActionResult AlterarRegiao(int id, [FromForm] Regiao regiao)
         {
             try
             {
-                var result = Repositorio.ProcurarRegiao(id);
+                var result = Repositorio.BuscarRegiao(id);
                 if (result == null)
                 {
                     return NotFound("Região não encontrada");
                 }
-                Repositorio.EdtiarRegiao(regiao);
-                LogService.RegistrarLog(DateTime.Now, 2, $"A região {result.Regiao} foi editada para {regiao.Regiao}", "Nenhum erro encontrado");
-                return Ok($"A Região {result.Regiao} foi alterada para {regiao.Regiao} com sucesso");
+                Repositorio.AlterarRegiao(regiao);
+                LogService.RegistrarLog(DateTime.Now, 2, $"A região {result.RegiaoNome} foi alterada para {regiao.RegiaoNome}", "Nenhum erro encontrado");
+                return Ok($"A região {result.RegiaoNome} foi alterada para {regiao.RegiaoNome} com sucesso");
             }
             catch (Exception ex)
             {
@@ -96,14 +96,14 @@ namespace GameDB.Controllers
         {
             try
             {
-                var busca = Repositorio.ProcurarRegiao(id);
+                var busca = Repositorio.BuscarRegiao(id);
                 if (busca == null)
                 {
-                    return NotFound("Região não encontrada, tente novamente");
+                    return NotFound("Região não encontrada ou já apagada");
                 }
                 Repositorio.ApagarRegiao(busca);
-                LogService.RegistrarLog(DateTime.Now, 2, $"A região {busca.Regiao} foi Apagada do banco", "Nenhum erro encontrado");
-                return Ok($"A Região {busca.Regiao} foi apagada com sucesso!");
+                LogService.RegistrarLog(DateTime.Now, 2, $"A região {busca.RegiaoNome} foi apagada do banco", "Nenhum erro encontrado");
+                return Ok($"A Região {busca.RegiaoNome} foi apagada com sucesso!");
             }
             catch (Exception ex)
             {

@@ -20,7 +20,7 @@ public partial class GameDBContext : DbContext
     public virtual DbSet<Genero> Generos { get; set; }
     public virtual DbSet<Logs> Logs { get; set; }
     public virtual DbSet<Plataforma> Plataformas { get; set; }
-    public virtual DbSet<Regioes> Regiaos { get; set; }
+    public virtual DbSet<Regiao> Regioes { get; set; }
     public virtual DbSet<Publicante> Publis { get; set; }
     public virtual DbSet<Desenvolvedora> Devs { get; set; }
 
@@ -73,14 +73,11 @@ public partial class GameDBContext : DbContext
 
         modelBuilder.Entity<Genero>(entity =>
         {
-            entity.HasKey(e => e.GeneroId).HasName("PK__Genero__A99D0268E917AC40");
-
             entity.ToTable("Genero");
 
-            entity.Property(e => e.GeneroId).HasColumnName("GeneroID");
+            entity.Property(e => e.GeneroID).HasColumnName("GeneroID");
             entity.Property(e => e.GeneroNome)
-                .HasMaxLength(50)
-                .HasColumnName("Genero");
+                .HasMaxLength(50);
         });
 
 
@@ -96,15 +93,12 @@ public partial class GameDBContext : DbContext
         });
 
         
-        modelBuilder.Entity<Regioes>(entity =>
+        modelBuilder.Entity<Regiao>(entity =>
         {
-            entity.HasKey(e => e.RegiaoId).HasName("PK__Regiao__1FC4ACDF5AE377E7");
+           entity.ToTable("Regiao");
 
-            entity.ToTable("Regiao");
-
-            entity.Property(e => e.Regiao)
-                .HasMaxLength(3)
-                .HasColumnName("Regiao");
+            entity.Property(e => e.Sigla).HasMaxLength(3);
+            entity.Property(entity => entity.RegiaoNome).HasMaxLength(50);
         });
 
        

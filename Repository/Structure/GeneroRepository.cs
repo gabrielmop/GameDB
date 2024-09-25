@@ -22,8 +22,13 @@ namespace GameDB.Repository.Structure
             DBC.SaveChanges();
         }
 
-        public void EditarGenero(Genero Genero)
+        public void AlterarGenero(Genero Genero)
         {
+            var existingEntity = DBC.Generos.Local.FirstOrDefault(e => e.GeneroID == Genero.GeneroID);
+            if (existingEntity != null)
+            {
+                DBC.Entry(existingEntity).State = EntityState.Detached;
+            }
             DBC.Entry(Genero).State = EntityState.Modified;
             DBC.SaveChanges();
         }
@@ -34,14 +39,14 @@ namespace GameDB.Repository.Structure
             return DBC.Generos.ToList();
         }
 
-        public Genero ProcurarGenero(int id)
+        public Genero BuscarGenero(int id)
         {
             //Expressão lambda:
             // return DBC.Genero.Where(s => s.id == id).FirstOrDefault();
             return DBC.Generos.Find(id);
         }
 
-        public Genero RegistrarGenero(Genero genero)
+        public Genero CadastrarGenero(Genero genero)
         {
             DBC.Add(genero);
             DBC.SaveChanges();

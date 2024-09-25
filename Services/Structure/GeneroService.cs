@@ -1,8 +1,6 @@
 ﻿using GameDB.Models.Structure;
 using GameDB.Repository.Interface.Structure;
-using GameDB.Repository.Structure;
 using GameDB.Services.Interface.Structure;
-using Microsoft.AspNetCore.JsonPatch;
 
 namespace GameDB.Services.Structure
 {
@@ -19,9 +17,9 @@ namespace GameDB.Services.Structure
             Repositorio.ApagarGenero(genero);
         }
 
-        public void EditarGenero(Genero Genero)
+        public void AlterarGenero(Genero Genero)
         {
-            Repositorio.EditarGenero(Genero);
+            Repositorio.AlterarGenero(Genero);
         }
 
         public List<Genero> ListarGeneros()
@@ -30,15 +28,15 @@ namespace GameDB.Services.Structure
             return resultado;
         }
 
-        public Genero ProcurarGenero(int id)
+        public Genero BuscarGenero(int id)
         {
-            var busca = Repositorio.ProcurarGenero(id);
+            var busca = Repositorio.BuscarGenero(id);
             return busca;
         }
 
-        public Genero RegistrarGenero(Genero Genero)
+        public Genero CadastrarGenero(Genero Genero)
         {
-            Repositorio.RegistrarGenero(Genero);
+            Repositorio.CadastrarGenero(Genero);
             return Genero;
         }
     }

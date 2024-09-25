@@ -25,9 +25,9 @@ namespace GameDB.Controllers
         {
             try
             {
-                var result = Service.RegistrarEstado(estado);
-                LogService.RegistrarLog(DateTime.Now, 2, $"O Estado {estado.EstadoNome} Foi registrado no Banco", "Nenhum erro encontrado");
-                return Ok($"O Estado {estado.EstadoNome} Foi registrado com sucesso!");
+                var result = Service.CadastrarEstado(estado);
+                LogService.RegistrarLog(DateTime.Now, 2, $"O Estado {estado.EstadoNome} foi cadastrado no Banco", "Nenhum erro encontrado");
+                return Ok($"O Estado {estado.EstadoNome} foi cadastrado com sucesso!");
             }
             catch (Exception ex)
             {
@@ -51,12 +51,12 @@ namespace GameDB.Controllers
             }
         }
 
-        [HttpGet("Buscar-estado-por-id/{id}")]
-        public IActionResult BuscarPorID(int id)
+        [HttpGet("Buscar-Estado/{id}")]
+        public IActionResult BuscarEstado(int id)
         {
             try
             {
-                var retrono = Service.ProcurarEstado(id);
+                var retrono = Service.BuscarEstado(id);
                 if (retrono == null)
                 {
                     return NotFound();
@@ -70,19 +70,19 @@ namespace GameDB.Controllers
             }
         }
 
-        [HttpPut("Editar-Estado/{id}")]
-        public IActionResult EditarEstado(int id, [FromForm] Estado estado)
+        [HttpPut("Alterar-Estado/{id}")]
+        public IActionResult AlterarEstado(int id, [FromForm] Estado estado)
         {
             try
             {
-                var busca = Service.ProcurarEstado(id);
+                var busca = Service.BuscarEstado(id);
                 if (busca == null)
                 {
-                    return NotFound("Genero não encontrado");
+                    return NotFound("Estado não encontrado");
                 }
-                Service.EditarEstado(estado);
-                LogService.RegistrarLog(DateTime.Now, 2, $"O Estado {busca.EstadoNome} Foi Alterado para {estado.EstadoNome}", "Nenhum erro encontrado");
-                return Ok($"O Estado {busca.EstadoNome} Foi alterado para {estado.EstadoNome} com sucesso!");
+                Service.AlterarEstado(estado);
+                LogService.RegistrarLog(DateTime.Now, 2, $"O Estado {busca.EstadoNome} foi alterado para {estado.EstadoNome}", "Nenhum erro encontrado");
+                return Ok($"O Estado {busca.EstadoNome} foi alterado para {estado.EstadoNome} com sucesso!");
             }
             catch (Exception ex)
             {
@@ -93,19 +93,19 @@ namespace GameDB.Controllers
         }
 
         [HttpDelete("Apagar-estado/{id}")]
-        public IActionResult ApagarGenero(int id)
+        public IActionResult ApagarEstado(int id)
         {
             try
             {
-                var busca = Service.ProcurarEstado(id);
+                var busca = Service.BuscarEstado(id);
                 if (busca == null)
                 {
-                    return NotFound();
+                    return NotFound("Estado não encontrado ou já apagado");
                 }
 
                 Service.ApagarEstado(busca);
-                LogService.RegistrarLog(DateTime.Now, 2, $"O Estado {busca.EstadoNome} Foi apagado do Banco", "Nenhum erro encontrado");
-                return Ok($"O Estado {busca.EstadoNome} Foi apagado com sucesso!");
+                LogService.RegistrarLog(DateTime.Now, 2, $"O Estado {busca.EstadoNome} foi apagado do Banco", "Nenhum erro encontrado");
+                return Ok($"O Estado {busca.EstadoNome} foi apagado com sucesso!");
 
             }
             catch (Exception ex)

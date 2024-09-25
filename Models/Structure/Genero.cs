@@ -2,7 +2,7 @@
 {
     public partial class Genero
     {
-        public int GeneroId { get; set; }
+        public int GeneroID { get; set; }
         public string GeneroNome { get; set; }       
     }
 }

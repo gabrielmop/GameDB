@@ -18,26 +18,26 @@ namespace GameDB.Services.Structure
             repositorio.ApagarPlataforma(plataforma);
         }
 
-        public void EditarPlataforma(Plataforma plataforma)
+        public void AlterarPlataforma(Plataforma plataforma)
         {
-            repositorio.EditarPlataforma(plataforma);
+            repositorio.AlterarPlataforma(plataforma);
         }
 
-        public List<Plataforma> ListarPlataforma()
+        public List<Plataforma> ListarPlataformas()
         {
-            var resultado = repositorio.ListarPlataforma();
+            var resultado = repositorio.ListarPlataformas();
             return resultado;
         }
 
-        public Plataforma ProcurarPlataforma(int id)
+        public Plataforma BuscarPlataforma(int id)
         {
-            var busca = repositorio.ProcurarPlataforma(id);
+            var busca = repositorio.BuscarPlataforma(id);
             return busca;
         }
 
-        public Plataforma RegistrarPlataforma(Plataforma plataforma)
+        public Plataforma CadastrarPlataforma(Plataforma plataforma)
         {
-            repositorio.RegistrarPlataforma(plataforma);
+            repositorio.CadastrarPlataforma(plataforma);
             return plataforma;
         }
     }

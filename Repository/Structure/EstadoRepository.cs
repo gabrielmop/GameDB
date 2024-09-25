@@ -21,8 +21,13 @@ namespace GameDB.Repository.Structure
             DBC.SaveChanges();
         }
 
-        public void EditarEstado(Estado estado)
+        public void AlterarEstado(Estado estado)
         {
+            var existingEntity = DBC.Estados.Local.FirstOrDefault(e => e.EstadoID == estado.EstadoID);
+            if (existingEntity != null)
+            {
+                DBC.Entry(existingEntity).State = EntityState.Detached;
+            }
             DBC.Entry(estado).State = EntityState.Modified;
             DBC.SaveChanges();
         }
@@ -32,12 +37,12 @@ namespace GameDB.Repository.Structure
             return DBC.Estados.ToList();
         }
 
-        public Estado ProcurarEstado(int id)
+        public Estado BuscarEstado(int id)
         {
             return DBC.Estados.Find(id);
         }
 
-        public Estado RegistrarEstado(Estado estado)
+        public Estado CadastrarEstado(Estado estado)
         {
             DBC.Add(estado);
             DBC.SaveChanges();

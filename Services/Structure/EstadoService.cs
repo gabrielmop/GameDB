@@ -18,9 +18,9 @@ namespace GameDB.Services.Structure
             Repositorio.ApagarEstado(estado);
         }
 
-        public void EditarEstado(Estado estado)
+        public void AlterarEstado(Estado estado)
         {
-            Repositorio.EditarEstado(estado);
+            Repositorio.AlterarEstado(estado);
         }
 
         public List<Estado> ListarEstados()
@@ -29,15 +29,15 @@ namespace GameDB.Services.Structure
             return resultado;
         }
 
-        public Estado ProcurarEstado(int id)
+        public Estado BuscarEstado(int id)
         {
-           var busca = Repositorio.ProcurarEstado(id);
+           var busca = Repositorio.BuscarEstado(id);
             return busca;
         }
 
-        public Estado RegistrarEstado(Estado estado)
+        public Estado CadastrarEstado(Estado estado)
         {
-            Repositorio.RegistrarEstado(estado);
+            Repositorio.CadastrarEstado(estado);
             return estado;
         }
     }

@@ -22,14 +22,14 @@ namespace GameDB.Controllers
         }
 
 
-        [HttpPost("Registrar-Nova-Plataforma")]
-        public IActionResult RegistrarPlataforma([FromForm] Plataforma plataforma)
+        [HttpPost("Cadastar-Plataforma")]
+        public IActionResult CadastarPlataforma([FromForm] Plataforma plataforma)
         {
             try
             {
-                var result = service.RegistrarPlataforma(plataforma);
-                LogService.RegistrarLog(DateTime.Now, 2, $"a Plataforma {plataforma.Console} da {plataforma.Marca}  Foi registrado no Banco", "Nenhum erro encontrado");
-                return Ok($"A Plataforma {plataforma.Console} da {plataforma.Marca} foi adicionado com sucesso!");
+                var result = service.CadastrarPlataforma(plataforma);
+                LogService.RegistrarLog(DateTime.Now, 2, $"A plataforma {plataforma.Console} da {plataforma.Marca} foi cadastada no Banco", "Nenhum erro encontrado");
+                return Ok($"A plataforma {plataforma.Console} da {plataforma.Marca} foi cadastrada com sucesso!");
                 
             }
             catch (Exception ex)
@@ -39,12 +39,12 @@ namespace GameDB.Controllers
             }
         }
 
-        [HttpGet("Listar-Plataforma")]
-        public IActionResult ListarPlataforma()
+        [HttpGet("Listar-Plataformas")]
+        public IActionResult ListarPlataformas()
         {
             try
             {
-                var result = service.ListarPlataforma();
+                var result = service.ListarPlataformas();
                 return Ok(result);
             }
             catch (Exception ex)
@@ -53,15 +53,15 @@ namespace GameDB.Controllers
             }
         }
 
-        [HttpGet("Buscar-Plataforma-Por-Id/{id}")]
-        public IActionResult BuscarPorId(int id)
+        [HttpGet("Buscar-Plataforma/{id}")]
+        public IActionResult BuscarPlataforma(int id)
         {
             try
             {
-                var resultado = service.ProcurarPlataforma(id);
+                var resultado = service.BuscarPlataforma(id);
                 if (resultado == null)
                 {
-                    return NotFound();
+                    return NotFound("Plataforma não encontrada");
                 }
                 return Ok(resultado);
             }
@@ -70,19 +70,20 @@ namespace GameDB.Controllers
                 return BadRequest(ex.Message);
             }
         }
-        [HttpPut("Editar-Plataforma/{id}")]
-        public IActionResult EditarPlataforma(int id,[FromForm]Plataforma plataforma)
+
+        [HttpPut("Alterar-Plataforma/{id}")]
+        public IActionResult AlterarPlataforma(int id,[FromForm]Plataforma plataforma)
         {
             try
             {
-                var busca = service.ProcurarPlataforma(id);
+                var busca = service.BuscarPlataforma(id);
                 if (busca == null)
                 {
-                    return NotFound();
+                    return NotFound("Plataforma não encontrada");
                 }
-                service.EditarPlataforma(plataforma);
-                LogService.RegistrarLog(DateTime.Now, 2, $"O Console {busca.Console} Foi alterado para {plataforma.Console} no Banco", "Nenhum erro encontrado");
-                return Ok($"O Console {busca.Console} foi alterado para {plataforma.Console} com sucesso!");
+                service.AlterarPlataforma(plataforma);
+                LogService.RegistrarLog(DateTime.Now, 2, $"A plataforma {busca.Console} foi alterada para {plataforma.Console} no Banco", "Nenhum erro encontrado");
+                return Ok($"A plataforma {busca.Console} foi alterada para {plataforma.Console} com sucesso!");
             }
             catch (Exception ex)
             {
@@ -93,14 +94,14 @@ namespace GameDB.Controllers
         [HttpDelete("Apagar-Plataforma/{id}")]
         public IActionResult ApagarPlataforma(int id)
         {
-            var resultado = service.ProcurarPlataforma(id);
+            var resultado = service.BuscarPlataforma(id);
             if (resultado == null)
             {
-                return NotFound();
+                return NotFound("Plataforma não encontrada ou já apagada");
             }
             service.ApagarPlataforma(resultado);
-            LogService.RegistrarLog(DateTime.Now, 2, $"O Console {resultado.Console} Foi apagado do Banco", "Nenhum erro encontrado");
-            return Ok($"O Console {resultado.Console} foi apagado com sucesso!");
+            LogService.RegistrarLog(DateTime.Now, 2, $"A plataforma {resultado.Console} foi apagada do Banco", "Nenhum erro encontrado");
+            return Ok($"A plataforma {resultado.Console} foi apagada com sucesso!");
         }
     }
 

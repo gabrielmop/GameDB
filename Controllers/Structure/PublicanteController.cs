@@ -27,7 +27,7 @@ namespace GameDB.Controllers
             {
                 var result = service.CadastrarPublicante(Publicante);
                 LogService.RegistrarLog(DateTime.Now, 2, $"A publicante {Publicante.PubliNome} foi registrada no Banco", "Nenhum erro encontrado");
-                return Ok($"A publicante {Publicante.PubliNome} Foi adicionado com sucesso");
+                return Ok($"A publicante {Publicante.PubliNome} foi adicionada com sucesso");
             }
             catch (Exception ex)
             {
@@ -81,7 +81,7 @@ namespace GameDB.Controllers
                     return NotFound("Publicante não encontrada");
                 }
                 service.AlterarPublicante(Publicante);
-                LogService.RegistrarLog(DateTime.Now, 2, $"A publicante {busca.PubliNome} foi alterado para {Publicante.PubliNome} no Banco", "Nenhum erro encontrado");
+                LogService.RegistrarLog(DateTime.Now, 2, $"A publicante {busca.PubliNome} foi alterada para {Publicante.PubliNome}", "Nenhum erro encontrado");
                 return Ok($"A publicante {busca.PubliNome} foi alterada para {Publicante.PubliNome} com sucesso!");
             }
             catch (Exception ex)

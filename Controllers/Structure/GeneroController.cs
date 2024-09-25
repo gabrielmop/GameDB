@@ -20,14 +20,14 @@ namespace GameDB.Controllers
             LogService = _Log;
         }
 
-        [HttpPost("Cadastrar-Novo-Genero")]
+        [HttpPost("Cadastrar-Genero")]
         public IActionResult CadastrarGenero([FromForm] Genero genero)
         {
             try
             {
-                var result = service.RegistrarGenero(genero);
-                LogService.RegistrarLog(DateTime.Now, 2, $"O genero {genero.GeneroNome} Foi registrado no Banco", "Nenhum erro encontrado");
-                return Ok($"O genero {genero.GeneroNome} Foi adicionado com sucesso");
+                var result = service.CadastrarGenero(genero);
+                LogService.RegistrarLog(DateTime.Now, 2, $"O genero {genero.GeneroNome} foi cadastrado no Banco", "Nenhum erro encontrado");
+                return Ok($"O genero {genero.GeneroNome} foi cadastrado com sucesso");
             }
             catch (Exception ex)
             {
@@ -51,15 +51,15 @@ namespace GameDB.Controllers
             }
         }
 
-        [HttpGet("Procurar-Genero-Por-Id/{id}")]
-        public IActionResult BuscarGeneroPorId(int id)
+        [HttpGet("Buscar-Genero/{id}")]
+        public IActionResult BuscarGenero(int id)
         {
             try
             {
-                var retrono = service.ProcurarGenero(id);
+                var retrono = service.BuscarGenero(id);
                 if (retrono == null)
                 {
-                    return NotFound();
+                    return NotFound("Genero não encontrado");
                 }
                 return Ok(retrono);
             }
@@ -70,19 +70,19 @@ namespace GameDB.Controllers
             }
         }
 
-        [HttpPut("Editar-Genero/{id}")]
+        [HttpPut("Alterar-Genero/{id}")]
         public IActionResult AlterarGenero(int id, [FromForm] Genero genero)
         {
             try
             {
-                var busca = service.ProcurarGenero(id);
+                var busca = service.BuscarGenero(id);
                 if (busca == null)
                 {
                     return NotFound("Genero não encontrado");
                 }
-                service.EditarGenero(genero);
-                LogService.RegistrarLog(DateTime.Now, 2, $"O genero {busca.GeneroNome} Foi Alterado para {genero.GeneroNome} no Banco", "Nenhum erro encontrado");
-                return Ok($"O genero {busca.GeneroNome} Foi alterado para {genero.GeneroNome} com sucesso!");
+                service.AlterarGenero(genero);
+                LogService.RegistrarLog(DateTime.Now, 2, $"O genero {busca.GeneroNome} foi alterado para {genero.GeneroNome} no Banco", "Nenhum erro encontrado");
+                return Ok($"O genero {busca.GeneroNome} foi alterado para {genero.GeneroNome} com sucesso!");
             }
             catch (Exception ex)
             {
@@ -98,7 +98,7 @@ namespace GameDB.Controllers
         {
             try
             {
-                var busca = service.ProcurarGenero(id);
+                var busca = service.BuscarGenero(id);
                 if (busca == null)
                 {
                     return NotFound();

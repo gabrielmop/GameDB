@@ -4,11 +4,11 @@ namespace GameDB.Repository.Interface.Structure
 {
     public interface IregiaoRepository
     {
-        public Regioes CadastrarRegiao(Regioes regiao);
-        public void ApagarRegiao(Regioes regiao);
-        public void EdtiarRegiao(Regioes regiao);
-        public Regioes ProcurarRegiao(int id);
-        public List<Regioes> ListarRegioes();
+        public Regiao CadastrarRegiao(Regiao regiao);
+        public void ApagarRegiao(Regiao regiao);
+        public void AlterarRegiao(Regiao regiao);
+        public Regiao BuscarRegiao(int id);
+        public List<Regiao> ListarRegioes();
 
 
     }

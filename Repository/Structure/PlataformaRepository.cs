@@ -22,23 +22,28 @@ namespace GameDB.Repository.Structure
             DBC.SaveChanges();
         }
 
-        public void EditarPlataforma(Plataforma plataforma)
+        public void AlterarPlataforma(Plataforma plataforma)
         {
+            var existingEntity = DBC.Plataformas.Local.FirstOrDefault(e => e.PlataformaId == plataforma.PlataformaId);
+            if (existingEntity != null)
+            {
+                DBC.Entry(existingEntity).State = EntityState.Detached;
+            }
             DBC.Entry(plataforma).State = EntityState.Modified;
             DBC.SaveChanges();
         }
 
-        public List<Plataforma> ListarPlataforma()
+        public List<Plataforma> ListarPlataformas()
         {
             return DBC.Plataformas.ToList();
         }
 
-        public Plataforma ProcurarPlataforma(int id)
+        public Plataforma BuscarPlataforma(int id)
         {
             return DBC.Plataformas.Find(id);
         }
 
-        public Plataforma RegistrarPlataforma(Plataforma plataforma)
+        public Plataforma CadastrarPlataforma(Plataforma plataforma)
         {
             DBC.Add(plataforma);
             DBC.SaveChanges();
