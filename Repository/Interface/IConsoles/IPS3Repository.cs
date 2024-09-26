@@ -3,13 +3,13 @@
 
 namespace GameDB.Repository.Interface.Consoles
 {
-    public interface IPs3Repository
+    public interface IPS3Repository
     {
-        public Ps3 AdicionarJogo(Ps3 ps3);
-        public void EditarJogo(Ps3 ps3);
-        public void ApagarJogo(Ps3 ps3);
-        public Ps3 ProcurarJogo(int id);
-        public List<Ps3Lista> ListarJogo();
-        public void EdtiarParcialmente(string Tabela, string Coluna, string ValorColuna, string Busca, string BuscaValor);
+        public PS3 CadastrarJogoPS3(PS3 ps3);
+        public void AlterarJogoPS3(PS3 ps3);
+        public void ApagarJogoPS3(PS3 ps3);
+        public PS3 BuscarJogoPS3(int id);
+        public List<PS3Lista> ListarJogosPS3();
+        public void AlterarParcialmenteJogoPS3(string Coluna, string ValorColuna, string Busca, string BuscaValor);
     }
 }

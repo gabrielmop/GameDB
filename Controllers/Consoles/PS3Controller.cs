@@ -20,12 +20,12 @@ namespace GameDB.Controllers.Consoles
             LogService = _log;
         }
 
-        [HttpPost("Adicionar-Jogo-PS3")]
-        public IActionResult AdicionarJogo([FromForm] Ps3 ps3)
+        [HttpPost("Cadastar-Jogo-PS3")]
+        public IActionResult CadastarJogoPS3([FromForm] PS3 ps3)
         {
             try
             {
-                _service.AdicionarJogo(ps3);
+                _service.CadastrarJogoPS3(ps3);
                 LogService.RegistrarLog(DateTime.Now, 2, $"O Jogo de PS3 {ps3.Nome} foi adicionado ao banco, custo de R${ps3.Preco}", "Nenhum erro encontrado");
                 return Ok($"O jogo {ps3.Nome} foi adicionado com sucesso!");
             }
@@ -37,14 +37,14 @@ namespace GameDB.Controllers.Consoles
 
         }
 
-        [HttpPost("editar-parcialmente-jogo-ps3")]
-        public IActionResult EditarParcialmente(string Tabela, string Coluna, string ValorColuna, string Busca, string BuscaValor)
+        [HttpPost("Alterar-Parcialmente-Jogo-ps3")]
+        public IActionResult AlterarParcialmenteJogoPS3(string Coluna, string ValorColuna, string Busca, string BuscaValor)
         {
             try
             {
-                _service.EdtiarParcialmente(Tabela, Coluna, ValorColuna, Busca, BuscaValor);
-                LogService.RegistrarLog(DateTime.Now, 2, $"Um Jogo foi editado parcialmente no banco", "Nenhum erro encontrado");
-                return Ok($"Dados alterados com Sucesso!");
+                _service.AlterarParcialmenteJogoPS3(Coluna, ValorColuna, Busca, BuscaValor);
+                LogService.RegistrarLog(DateTime.Now, 2, $"O jogo de ID {BuscaValor} foi editado parcialmente no banco: O valor da Coluna {Coluna} foi editado para {ValorColuna}", "Nenhum erro encontrado");
+                return Ok($"Você alterou o jogo de ID {BuscaValor} com a seguinte edição: {Coluna}: {ValorColuna}");
             }
             catch (Exception ex)
             {
@@ -55,21 +55,21 @@ namespace GameDB.Controllers.Consoles
         }
 
         [HttpGet("Listar-Jogos-PS3")]
-        public IActionResult ListarJogos()
+        public IActionResult ListarJogosPS3()
         {
-            var result = _service.ListarJogo();
+            var result = _service.ListarJogosPS3();
             return Ok(result);
         }
 
-        [HttpGet("buscar-jogo-por-id-ps3/{id}")]
-        public IActionResult BuscarPorID(int id)
+        [HttpGet("Buscar-jogo-ps3/{id}")]
+        public IActionResult BuscarJogoPS3(int id)
         {
             try
             {
-                var retrono = _service.ProcurarJogo(id);
+                var retrono = _service.BuscarJogoPS3(id);
                 if (retrono == null)
                 {
-                    return NotFound("Jogo não encontrado no Banco de dados");
+                    return NotFound("Jogo não encontrado");
                 }
                 return Ok(retrono);
             }
@@ -80,17 +80,17 @@ namespace GameDB.Controllers.Consoles
             }
         }
 
-        [HttpPut("Editar-Jogo-PS3/{id}")]
-        public IActionResult EditarJogo(int id, [FromForm] Ps3 ps3)
+        [HttpPut("Alterar-Jogo-PS3/{id}")]
+        public IActionResult AlterarJogoPS3(int id, [FromForm] PS3 ps3)
         {
             try
             {
-                var result = _service.ProcurarJogo(id);
+                var result = _service.BuscarJogoPS3(id);
                 if (result == null)
                 {
                     return NotFound("Jogo não encontrado");
                 }
-                _service.EditarJogo(ps3);
+                _service.AlterarJogoPS3(ps3);
                 LogService.RegistrarLog(DateTime.Now, 2, $"O Jogo de PS3 de ID {result.GameId} foi editado para {ps3.Nome}", "Nenhum erro encontrado");
                 return Ok($"O jogo {result.Nome} foi alterado para {ps3.Nome} com sucesso!");
             }
@@ -102,17 +102,17 @@ namespace GameDB.Controllers.Consoles
         }
 
         [HttpDelete("Apagar-Jogo-PS3/{id}")]
-        public IActionResult ApagarJogo(int id)
+        public IActionResult ApagarJogoPS3(int id)
         {
             try
             {
-                var busca = _service.ProcurarJogo(id);
+                var busca = _service.BuscarJogoPS3(id);
                 if (busca == null)
                 {
-                    return NotFound("Jogo não encontrado");
+                    return NotFound("Jogo não encontrado ou já apagado");
                 }
-                _service.ApagarJogo(busca);
-                LogService.RegistrarLog(DateTime.Now, 2, $"O Jogo de PS3 {busca.Nome} foi Removido do banco", "Nenhum erro encontrado");
+                _service.ApagarJogoPS3(busca);
+                LogService.RegistrarLog(DateTime.Now, 2, $"O Jogo de PS3 {busca.Nome} foi apagado do banco", "Nenhum erro encontrado");
                 return Ok($"O jogo {busca.Nome} foi apagado com sucesso!");
             }
             catch (Exception ex)

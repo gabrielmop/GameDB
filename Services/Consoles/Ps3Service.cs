@@ -5,45 +5,44 @@ using GameDB.Services.Interfaces.Consoles;
 
 namespace GameDB.Services.Consoles
 {
-    public class Ps3Serivce : IPS3Service
+    public class PS3Serivce : IPS3Service
     {
-        private readonly IPs3Repository Repositorio;
+        private readonly IPS3Repository Repositorio;
 
-        public Ps3Serivce(IPs3Repository repositorio)
+        public PS3Serivce(IPS3Repository repositorio)
         {
             Repositorio = repositorio;
         }
 
-        public Ps3 AdicionarJogo(Ps3 ps3)
+        public PS3 CadastrarJogoPS3(PS3 ps3)
         {
-            Repositorio.AdicionarJogo(ps3);
-
+            Repositorio.CadastrarJogoPS3(ps3);
             return ps3;
         }
 
-        public void ApagarJogo(Ps3 ps3)
+        public void ApagarJogoPS3(PS3 ps3)
         {
-            Repositorio.ApagarJogo(ps3);
+            Repositorio.ApagarJogoPS3(ps3);
         }
 
-        public void EditarJogo(Ps3 ps3)
+        public void AlterarJogoPS3(PS3 ps3)
         {
-            Repositorio.EditarJogo(ps3);
+            Repositorio.AlterarJogoPS3(ps3);
         }
 
-        public void EdtiarParcialmente(string Tabela, string Coluna, string ValorColuna, string Busca, string BuscaValor)
+        public void AlterarParcialmenteJogoPS3(string Coluna, string ValorColuna, string Busca, string BuscaValor)
         {
-           Repositorio.EdtiarParcialmente(Tabela, Coluna, ValorColuna, Busca, BuscaValor);
+           Repositorio.AlterarParcialmenteJogoPS3(Coluna, ValorColuna, Busca, BuscaValor);
         }
 
-        public List<Ps3Lista> ListarJogo()
+        public List<PS3Lista> ListarJogosPS3()
         {
-            var result = Repositorio.ListarJogo();
+            var result = Repositorio.ListarJogosPS3();
             foreach (var item in result)
             {
                 if (item.Preco == "R$ 0,00")
                 {
-                    if (item.Observacoes.Contains("Guitarra"))
+                    if (item.Notas.Contains("Guitarra"))
                     {
                         item.Preco = "Bundle com a Guitarra";
                     }
@@ -55,9 +54,9 @@ namespace GameDB.Services.Consoles
             return result;
         }
 
-        public Ps3 ProcurarJogo(int id)
+        public PS3 BuscarJogoPS3(int id)
         {
-            var busca = Repositorio.ProcurarJogo(id);
+            var busca = Repositorio.BuscarJogoPS3(id);
             return busca;
         }
     }

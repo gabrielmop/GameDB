@@ -25,8 +25,8 @@ public partial class GameDBContext : DbContext
     public virtual DbSet<Desenvolvedora> Devs { get; set; }
 
     //dbset dos consoles
-    public virtual DbSet<Ps3> Ps3s { get; set; }
-    public virtual DbSet<Ps3Lista> Ps3l { get; set; }
+    public virtual DbSet<PS3> Ps3s { get; set; }
+    public virtual DbSet<PS3Lista> Ps3l { get; set; }
   
 
 
@@ -50,6 +50,50 @@ public partial class GameDBContext : DbContext
                 .HasMaxLength(20)
                 .IsUnicode(false);
         });
+
+     
+
+            modelBuilder.Entity<PS3>(entity =>
+        {
+            // Define o nome da tabela
+            entity.ToTable("PS3");
+
+            // Chave primária
+            entity.HasKey(e => e.GameId);
+
+            // Propriedades
+            entity.Property(e => e.Nome)
+                  .HasMaxLength(255);  // Define um tamanho máximo (se desejar)
+
+            entity.Property(e => e.Serial)
+                  .HasMaxLength(20);  // Define um tamanho máximo (se desejar)
+
+            entity.Property(e => e.ResMax)
+                  .HasMaxLength(5);  // Define um tamanho máximo (se desejar)
+
+            entity.Property(e => e.Lancamento)
+                  .IsRequired();
+
+            entity.Property(e => e.Preco)
+                  .HasColumnType("decimal(5, 2)");
+
+            entity.Property(e => e.Aquisicao)
+                  .HasColumnType("datetime");
+
+            entity.Property(e => e.LocalAdq)
+                  .HasMaxLength(100);  // Define um tamanho máximo (se desejar)
+
+            entity.Property(e => e.Notas)
+                  .HasMaxLength(300);  // Define um tamanho máximo (se desejar)
+
+            entity.Property(e => e.Instalacao)
+                  .IsRequired(false);
+
+            // Configurações de chave estrangeira, se necessário (não especificado aqui)
+            // entity.HasOne(...).WithMany(...).HasForeignKey(...);
+        });
+
+     
 
         modelBuilder.Entity<Publicante>(entity =>
         {
