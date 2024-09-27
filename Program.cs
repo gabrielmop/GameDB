@@ -66,7 +66,9 @@ builder.Services.AddTransient<IDesenvolvedoraService, DesenvolvedoraService>();
 //Construtor dos Consoles
 
 builder.Services.AddTransient<IPS3Repository, PS3Repository>();
-builder.Services.AddTransient<IPS3Service, PS3Serivce>();
+builder.Services.AddTransient<IPS3Service, PS3Service>();
+builder.Services.AddTransient<IPS4Repository, PS4Repository>();
+builder.Services.AddTransient<IPS4Service, PS4Service>();
 
 
 

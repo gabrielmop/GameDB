@@ -5,11 +5,11 @@ using GameDB.Services.Interfaces.Consoles;
 
 namespace GameDB.Services.Consoles
 {
-    public class PS3Serivce : IPS3Service
+    public class PS3Service : IPS3Service
     {
         private readonly IPS3Repository Repositorio;
 
-        public PS3Serivce(IPS3Repository repositorio)
+        public PS3Service(IPS3Repository repositorio)
         {
             Repositorio = repositorio;
         }
