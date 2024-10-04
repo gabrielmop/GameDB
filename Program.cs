@@ -9,9 +9,8 @@ using GameDB.Services.Interfaces.Consoles;
 using GameDB.Services.Interfaces.Struture;
 using GameDB.Services.Structure;
 using GameDB.Services.Interfaces.IStruture;
-using Microsoft.Extensions.DependencyInjection;
 using Microsoft.OpenApi.Models;
-using GameDB.Models.Structure;
+using GameDB.Models.Consoles;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -69,13 +68,17 @@ builder.Services.AddTransient<IPS3Repository, PS3Repository>();
 builder.Services.AddTransient<IPS3Service, PS3Service>();
 builder.Services.AddTransient<IPS4Repository, PS4Repository>();
 builder.Services.AddTransient<IPS4Service, PS4Service>();
+builder.Services.AddTransient<IJogosDigitaisRepository, JogosDigitaisRepository>();
+builder.Services.AddTransient<IJogosDigitaisService, JogosDigitaisService>();
+
+
 
 
 
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
+
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();

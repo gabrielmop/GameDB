@@ -43,7 +43,7 @@ namespace GameDB.Models.Consoles
         public string? LocalAdq { get; set; }
         public string? Notas { get; set; }
         public string? PS4Pro { get; set; }
-        public string? EstadoID { get; set; }
+        public string? Estado { get; set; }
     }
 
 

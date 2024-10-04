@@ -29,6 +29,8 @@ public partial class GameDBContext : DbContext
     public virtual DbSet<PS3Lista> Ps3l { get; set; }
     public virtual DbSet<PS4> Ps4s { get; set; }
     public virtual DbSet<PS4Lista> Ps4l { get; set; }
+    public virtual DbSet<JogosDigitais> Digitals { get; set; }
+    public virtual DbSet<JogosDigitaisLista> DigitalL { get; set; }
   
 
 
@@ -53,9 +55,42 @@ public partial class GameDBContext : DbContext
                 .IsUnicode(false);
         });
 
-     
+        modelBuilder.Entity<JogosDigitais>(entity =>
+        {
+           
+            entity.ToTable("Jogos_Digitais");
 
-            modelBuilder.Entity<PS3>(entity =>
+          
+            entity.HasKey(e => e.GameId);
+
+          
+            entity.Property(e => e.Nome)
+                  .HasMaxLength(250);  
+
+            entity.Property(e => e.Serial)
+                  .HasMaxLength(60); 
+
+            entity.Property(e => e.Lancamento)
+                  .IsRequired();
+
+            entity.Property(e => e.Tamanho)
+                  .HasColumnType("decimal(18, 0)");
+
+            entity.Property(e => e.DataBackup)
+                  .HasColumnType("datetime");
+
+            entity.Property(e => e.LocalBackup)
+                  .HasMaxLength(60);  
+
+            entity.Property(e => e.Notas)
+                  .HasMaxLength(250); 
+
+            
+        });
+
+
+
+        modelBuilder.Entity<PS3>(entity =>
         {
            
             entity.ToTable("PS3");
