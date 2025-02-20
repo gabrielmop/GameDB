@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.VisualBasic;
+using System.ComponentModel.DataAnnotations;
 
 namespace GameDB.Models.Consoles
 {
@@ -34,7 +35,6 @@ namespace GameDB.Models.Consoles
         public string? Regiao { get; set; }
         public string? Desenvolvedora { get; set; }
         public string? Publicante { get; set; }
-        public string? Plataforma { get; set; }
         public string? Genero { get; set; }
         public string? Tamanho { get; set; }
         public string? Lancamento { get; set; }

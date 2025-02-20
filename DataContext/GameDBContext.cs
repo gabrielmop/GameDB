@@ -37,7 +37,7 @@ public partial class GameDBContext : DbContext
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-        => optionsBuilder.UseSqlServer("Data Source=Moop_PC;Initial Catalog=GameDB;Integrated Security=true;TrustServerCertificate=true");
+        => optionsBuilder.UseSqlServer("Data Source=MoopPC;Initial Catalog=GameDB;Integrated Security=true;TrustServerCertificate=true");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -74,8 +74,6 @@ public partial class GameDBContext : DbContext
             entity.Property(e => e.Tamanho)
                   .HasColumnType("string");
 
-            entity.Property(e => e.DataBackup)
-                  .HasColumnType("datetime");
 
             entity.Property(e => e.LocalBackup)
                   .HasMaxLength(60);  
@@ -113,7 +111,7 @@ public partial class GameDBContext : DbContext
                   .HasColumnType("decimal(5, 2)");
 
             entity.Property(e => e.Aquisicao)
-                  .HasColumnType("datetime");
+                  .IsRequired();
 
             entity.Property(e => e.LocalAdq)
                   .HasMaxLength(100); 
@@ -152,7 +150,7 @@ public partial class GameDBContext : DbContext
                   .HasColumnType("decimal(5, 2)");
 
             entity.Property(e => e.Aquisicao)
-                  .HasColumnType("datetime");
+                  .IsRequired();
 
             entity.Property(e => e.LocalAdq)
                   .HasMaxLength(100);  

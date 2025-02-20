@@ -58,6 +58,7 @@ namespace GameDB.Repository.Consoles
         public List<PS4Lista> ListarJogosPS4()
         {
             var Lista = DBC.Ps4l.FromSqlRaw("execute dbo.Listar_Jogos_PS4");
+            Lista.AsEnumerable();
             return Lista.ToList();
              
             

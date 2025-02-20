@@ -37,7 +37,7 @@ namespace GameDB.Models.Consoles
         public string? Plataforma { get; set; }
         public string? Genero { get; set; }
         public string? ResMax { get; set; }
-        public string? Lancamento { get; set; }
+        public string Lancamento { get; set; }
         public string? Preco { get; set; }
         public string? Aquisicao { get; set; }
         public string? LocalAdq { get; set; }
