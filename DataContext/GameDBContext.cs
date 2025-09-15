@@ -23,12 +23,15 @@ public partial class GameDBContext : DbContext
     public virtual DbSet<Regiao> Regioes { get; set; }
     public virtual DbSet<Publicante> Publis { get; set; }
     public virtual DbSet<Desenvolvedora> Devs { get; set; }
+    public virtual DbSet<Digital_Index> dis { get; set; }
 
     //dbset dos consoles
     public virtual DbSet<PS3> Ps3s { get; set; }
     public virtual DbSet<PS3Lista> Ps3l { get; set; }
     public virtual DbSet<PS4> Ps4s { get; set; }
     public virtual DbSet<PS4Lista> Ps4l { get; set; }
+    public virtual DbSet<Xone> xones { get; set; }
+    public virtual DbSet<XoneLista> xonel { get; set; }
     public virtual DbSet<JogosDigitais> Digitals { get; set; }
     public virtual DbSet<JogosDigitaisLista> DigitalL { get; set; }
   
@@ -36,7 +39,6 @@ public partial class GameDBContext : DbContext
     
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
         => optionsBuilder.UseSqlServer("Data Source=MoopPC;Initial Catalog=GameDB;Integrated Security=true;TrustServerCertificate=true");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -123,6 +125,42 @@ public partial class GameDBContext : DbContext
                   .IsRequired(false);
 
             
+        });
+
+        modelBuilder.Entity<Xone>(entity =>
+        {
+
+            entity.ToTable("XONE");
+
+
+            entity.HasKey(e => e.GameId);
+
+
+            entity.Property(e => e.Nome)
+                  .HasMaxLength(255);
+
+            entity.Property(e => e.Lancamento)
+                  .IsRequired();
+
+            entity.Property(e => e.Tamanho)
+                  .HasColumnType("decimal(18, 2)");
+
+            entity.Property(e => e.Preco)
+                  .HasColumnType("decimal(5, 2)");
+
+            entity.Property(e => e.Aquisicao)
+                  .IsRequired();
+
+            entity.Property(e => e.LocalAdq)
+                  .HasMaxLength(100);
+
+            entity.Property(e => e.Notas)
+                  .HasMaxLength(300);
+
+            entity.Property(e => e.OneX)
+                  .IsRequired(false);
+
+
         });
 
         modelBuilder.Entity<PS4>(entity =>
