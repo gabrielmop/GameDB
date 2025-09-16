@@ -26,7 +26,7 @@ namespace GameDB.Controllers.Consoles
             try
             {
                 _service.CadastrarJogoDigital(jd);
-                LogService.RegistrarLog(DateTime.Now, 2, $"O Jogo digital {jd.Nome} foi adicionado ao banco, Backup feito em {jd.LocalBackup}", "Nenhum erro encontrado");
+                LogService.RegistrarLog(DateTime.Now, 2, $"O Jogo digital {jd.Nome} foi adicionado ao banco, backup feito em {jd.LocalBackup}", "Nenhum erro encontrado");
                 return Ok($"O jogo {jd.Nome} foi adicionado com sucesso!");
             }
             catch (Exception ex)
@@ -91,7 +91,7 @@ namespace GameDB.Controllers.Consoles
                     return NotFound("Jogo não encontrado");
                 }
                 _service.AlterarJogoDigital(jd);
-                LogService.RegistrarLog(DateTime.Now, 2, $"O Jogo digital de ID {result.GameId} foi editado para {jd.Nome}", "Nenhum erro encontrado");
+                LogService.RegistrarLog(DateTime.Now, 2, $"O jogo digital {result.Nome} foi editado para {jd.Nome}", "Nenhum erro encontrado");
                 return Ok($"O jogo {result.Nome} foi alterado para {jd.Nome} com sucesso!");
             }
             catch (InvalidCastException ex)
@@ -112,7 +112,7 @@ namespace GameDB.Controllers.Consoles
                     return NotFound("Jogo não encontrado ou já apagado");
                 }
                 _service.ApagarJogoDigital(busca);
-                LogService.RegistrarLog(DateTime.Now, 2, $"O Jogo digital {busca.Nome} foi apagado do banco", "Nenhum erro encontrado");
+                LogService.RegistrarLog(DateTime.Now, 2, $"O jogo digital {busca.Nome} foi apagado do banco", "Nenhum erro encontrado");
                 return Ok($"O jogo {busca.Nome} foi apagado com sucesso!");
             }
             catch (Exception ex)

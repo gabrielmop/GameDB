@@ -61,6 +61,8 @@ builder.Services.AddTransient<IPublicanteRepository, PublicanteRepository>();
 builder.Services.AddTransient<IPublicanteService, PublicanteService>();
 builder.Services.AddTransient<IDesenvolvedoraRepository, DesenvolvedoraRepository>();
 builder.Services.AddTransient<IDesenvolvedoraService, DesenvolvedoraService>();
+builder.Services.AddTransient<IDigital_IndexRepository, Digital_IndexRepository>();
+builder.Services.AddTransient<IDigital_IndexService, Digital_IndexService>();
 
 //Construtor dos Consoles
 

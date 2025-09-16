@@ -1,8 +1,9 @@
 ﻿using GameDB.Models.Structure;
 
-namespace GameDB.Repository.Interface.Structure
+
+namespace GameDB.Services.Interface.Structure
 {
-    public interface IDigital_IndexRepository
+    public interface IDigital_IndexService
     {
         public Digital_Index CadastrarDigital_Index(Digital_Index Desenvolvedora);
         public void AlterarDigital_Index(Digital_Index Desenvolvedora);

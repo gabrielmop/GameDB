@@ -24,6 +24,7 @@ public partial class GameDBContext : DbContext
     public virtual DbSet<Publicante> Publis { get; set; }
     public virtual DbSet<Desenvolvedora> Devs { get; set; }
     public virtual DbSet<Digital_Index> dis { get; set; }
+    public virtual DbSet<Digital_IndexLista> dil { get; set; }
 
     //dbset dos consoles
     public virtual DbSet<PS3> Ps3s { get; set; }
@@ -210,6 +211,23 @@ public partial class GameDBContext : DbContext
             entity.Property(e => e.PubliNome)
                 .HasMaxLength(255)
                 .IsUnicode(false);
+        });
+
+        modelBuilder.Entity<Digital_Index>(entity =>
+        {
+            entity.ToTable("Digital_Info"); 
+
+            entity.HasKey(e => e.InfoID);
+
+            entity.Property(e => e.Nome)
+                .HasMaxLength(255)
+                .IsUnicode(false);
+
+            entity.Property(e => e.Preco)
+                .HasColumnType("decimal(5,2)");
+
+            entity.Property(e => e.booleanos)
+                .HasColumnName("booleanos");
         });
 
         modelBuilder.Entity<Desenvolvedora>(entity =>

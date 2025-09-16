@@ -1,6 +1,7 @@
 ﻿using GameDB.DataContext;
 using GameDB.Models.Structure;
 using GameDB.Repository.Interface.Structure;
+using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 
 namespace GameDB.Repository.Structure
@@ -32,9 +33,10 @@ namespace GameDB.Repository.Structure
         }
 
 
-        public List<Digital_Index> ListarDigital_Index()
+        public List<Digital_IndexLista> ListarDigital_Index()
         {
-            return DBC.dis.ToList();
+            var Lista = DBC.dil.FromSqlRaw("execute dbo.Listar_Digital_Info");
+            return Lista.ToList();
         }
 
         public Digital_Index BuscarDigital_Index(int id)
@@ -47,6 +49,18 @@ namespace GameDB.Repository.Structure
             DBC.Add(index);
             DBC.SaveChanges();
             return index;
+        }
+
+        public void AlterarParcialmenteDigital_Index(string Coluna, string ValorColuna, string Busca, string BuscaValor)
+        {
+
+            var sql = $"UPDATE Digital_Info SET {Coluna} = @p2 WHERE {Busca} = @p4";
+
+            var param3 = new SqlParameter("@p2", ValorColuna);
+            var param5 = new SqlParameter("@p4", BuscaValor);
+            DBC.Database.ExecuteSqlRaw(sql, param3, param5);
+
+
         }
     }
 }
